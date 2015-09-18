@@ -25,6 +25,7 @@ RUN riot  --version
 # --volume
 RUN mkdir /rdf
 WORKDIR /rdf
+#VOLUME /rdf
 CMD ["/jena/bin/riot"]
 
 
