@@ -90,6 +90,6 @@ For any issues with Jena or `riot`, feel free to
 [raise a bug](https://jena.apache.org/help_and_support/bugs_and_suggestions.html).
 
 For any issues with this Docker image
-and its [Dockerfile](https://github.com/stain/jena/),
-please raise a [pull request](https://github.com/stain/jena/pulls) or
-[issue](https://github.com/stain/jena/issues).
+and its [Dockerfile](https://github.com/stain/jena-docker/),
+please raise a [pull request](https://github.com/stain/jena-docker/pulls) or
+[issue](https://github.com/stain/jena-docker/issues).
