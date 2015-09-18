@@ -1,12 +1,13 @@
 # Jena Riot
 
-Docker image: [stain/jena](https://hub.docker.com/r/stain/jena/)
+* Docker image: [stain/jena](https://hub.docker.com/r/stain/jena/)
+* Base images: [anapsix/alpine-jena](https://hub.docker.com/r/anapsix/alpine-java/):jre8, [alpine](https://hub.docker.com/r/_/alpine/)
+* Docker file: https://github.com/stain/jena-docker
 
-Base images: [anapsix/alpine-jena](https://hub.docker.com/r/anapsix/alpine-java/):jre8, [alpine](https://hub.docker.com/r/_/alpine/)
-
-[![Build Status](https://travis-ci.org/stain/jena.svg)](https://travis-ci.org/stain/jena)
+[![Build Status](https://travis-ci.org/stain/jena-docker.svg)](https://travis-ci.org/stain/jena-docker)
 
 [![](https://badge.imagelayers.io/stain/jena:latest.svg)](https://imagelayers.io/?images=stain/jena:latest 'Get your own badge on imagelayers.io')
+
 
 This docker image exposes the [Apache Jena](https://jena.apache.org/)
 command line tool [riot](https://jena.apache.org/documentation/io/#command-line-tools)
@@ -16,17 +17,19 @@ and its variants `turtle`, `ntriples`, `nquads`, `trig` and  `rdfxml`.
 
 Different licenses apply to files added by different [Docker layers](https://imagelayers.io/?images=stain%2Fjena).
 
+* stain/jena [Dockerfile](https://github.com/stain/jena-docker): [Apache License, version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
 * Apache Jena (`/jena` in the image): [Apache License, version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
   See also: `docker run stain/jena cat /jena/NOTICE`
 * Oracle JDK (`/opt/jdk` in the image): [Oracle Binary Code License Agreement for the Java SE Platform Products and JavaFX](http://java.com/license)
   See also: `docker run stain/jena cat /opt/jdk/THIRDPARTYLICENSEREADME.txt`
-*
+* Alpine Linux (rest of `/`): Unknown ([GPL 3?](http://www.gnu.org/licenses/gpl-3.0))
 
 ## Usage
 
     docker run stain/jena riot http://www.w3.org/2013/TurtleTests/SPARQL_style_prefix.ttl
 
-For documentation, try:
+For [documentation](https://jena.apache.org/documentation/io/#command-line-tools)
+about `riot`, try:
 
     docker run stain/jena riot --help
 
