@@ -16,7 +16,7 @@ RUN echo "$JENA_SHA1  jena.tar.gz" > jena.tar.gz.sha1
 # Download/check/unpack/move in one go (to reduce image size)
 RUN wget -O jena.tar.gz $JENA_MIRROR/jena/binaries/apache-jena-$JENA_VERSION.tar.gz && \
 	sha1sum -c jena.tar.gz.sha1 && \
-	tar zxfv jena.tar.gz && \
+	tar zxf jena.tar.gz && \
 	mv apache-jena* /jena && \
 	rm jena.tar.gz* && \
 	cd /jena && rm -rf *javadoc* *src* bat
