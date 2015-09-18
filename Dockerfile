@@ -6,8 +6,9 @@ ENV VERSION 3.0.0
 ENV MIRROR http://www.eu.apache.org/dist/
 WORKDIR /tmp
 RUN echo "$SHA1  jena.tar.gz" > jena.tar.gz.sha1
-RUN wget -O jena.tar.gz $MIRROR/jena/binaries/apache-jena-$VERSION.tar.gz && sha1sum -c jena.tar.gz.sha1 && unzip jena.tar.gz && mv apache* /jena
-
+RUN wget -O jena.tar.gz $MIRROR/jena/binaries/apache-jena-$VERSION.tar.gz && sha1sum -c jena.tar.gz.sha1 && tar zxfv jena.tar.gz && mv apache* /jena && rm jena.tar.gz*
+ENV PATH $PATH:/jena/bin
+CMD ["/jena/bin/riot"]
 
 
 
