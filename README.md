@@ -68,7 +68,8 @@ process local files.
     docker run --volume /home/stain/Downloads:/rdf stain/jena riot db-uniprot-ls.ttl
 
 Note that `riot` does not currently have an option to specify the
-output file (see JENA-xxx ), so you will need to use your host shell's
+output file (see [JENA-1032](https://issues.apache.org/jira/browse/JENA-1032)),
+so you will need to use your host shell's
 pipeline:
 
     docker run --volume /home/stain/Downloads:/rdf stain/jena riot db-uniprot-ls.ttl > /home/stain/Downloads/db-uniprot-ls.nq
