@@ -4,7 +4,7 @@ Docker image: [stain/jena](https://hub.docker.com/r/stain/jena/)
 
 Base images: [anapsix/alpine-jena](https://hub.docker.com/r/anapsix/alpine-java/):jre8, [alpine](https://hub.docker.com/r/_/alpine/)
 
-
+[![Build Status](https://travis-ci.org/stain/jena.svg)](https://travis-ci.org/stain/jena)
 
 [![](https://badge.imagelayers.io/stain/jena:latest.svg)](https://imagelayers.io/?images=stain/jena:latest 'Get your own badge on imagelayers.io')
 
