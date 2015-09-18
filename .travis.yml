@@ -1,0 +1,13 @@
+sudo: required
+
+services:
+  -docker
+
+before_install:
+  - docker build -t jena .
+  - echo "<http://example.com/a> <http://example.com/b> <http://example.com/c> ." > /tmp/example.ttl
+
+script:
+  - docker run jena --version # Does it run at all?
+  - docker run --volumes /tmp:/rdf jena riot example.ttl > /tmp/example.nq
+  - grep --quiet example.com /tmp/example.nq
