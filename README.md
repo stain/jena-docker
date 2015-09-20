@@ -12,19 +12,19 @@ These are currently available from the Docker Hub as:
 
  - [stain/jena](https://hub.docker.com/r/stain/jena/)
  - [stain/jena-fuseki](https://hub.docker.com/r/stain/jena-fuseki/)
- 
- Note that although these Docker images are based on the official Apache Jena releases, 
- they do **not** constitute official releases from Apache Software Foundation.
- 
- See also [JENA-909](https://issues.apache.org/jira/browse/JENA-909) which proposes
- official Jena Docker images.
- 
- ## Building
 
- ```
- docker build -t jena jena
- docker build -t jena-fuseki jena-fuseki
- ```
+Note that although these Docker images are based on the official Apache Jena releases, 
+they do **not** constitute official releases from Apache Software Foundation.
+
+See also [JENA-909](https://issues.apache.org/jira/browse/JENA-909) which proposes
+official Jena Docker images.
+ 
+## Building
+
+```shell
+docker build -t jena jena
+docker build -t jena-fuseki jena-fuseki
+```
  
 ## Dockerfile overview
 
