@@ -20,8 +20,8 @@ for e in $extensions ; do
   PATTERNS="$PATTERNS *.$e *.$e.gz"
 done
 
-if [ $# -eq 0 ] ; then 
-  echo "$0 [DB] [PATTERN ...]" 
+if [ $# -eq 0 ] ; then
+  echo "$0 [DB] [PATTERN ...]"
   echo "Load one or more RDF files into Jena Fuseki TDB database DB."
   echo ""
   echo "Current directory is assumed to be /staging"
@@ -39,7 +39,7 @@ echo "Current directory:" $(pwd)
 DB=$1
 shift
 
-if [ $# -eq 0 ] ; then 
+if [ $# -eq 0 ] ; then
   patterns="$PATTERNS"
 else
   patterns="$@"
@@ -49,8 +49,8 @@ files=""
 for f in $patterns; do
   if [ -f $f ] ; then
     files="$files $f"
-  else 
-    if [ $# -gt 0 ] ; then 
+  else
+    if [ $# -gt 0 ] ; then
       # User-specified file/pattern missing
       echo "WARNING: Not found: $f" >&2
     fi

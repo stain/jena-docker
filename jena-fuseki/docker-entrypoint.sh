@@ -18,8 +18,8 @@ set -e
 
 if [ ! -f "$FUSEKI_BASE/shiro.ini" ] ; then
   # First time
-  echo "###################################" 
-  echo "Initializing Apache Jena Fuseki" 
+  echo "###################################"
+  echo "Initializing Apache Jena Fuseki"
   echo ""
   cp "$FUSEKI_HOME/shiro.ini" "$FUSEKI_BASE/shiro.ini"
   if [ -z "$ADMIN_PASSWORD" ] ; then
