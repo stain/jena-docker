@@ -29,4 +29,20 @@ These are currently available from the Docker Hub as:
 ## Dockerfile overview
 
 The `Dockerfile`s for both images use [anapsix/alpine-java](https://hub.docker.com/r/anapsix/alpine-java/) as a base image, which 
-unlike [java](https://hub.docker.com/r/anapsix/alpine-java/) clocks in at just 
+unlike [java](https://hub.docker.com/r/anapsix/alpine-java/) clocks in at just [174 vs 488 MB](https://imagelayers.io/?images=anapsix%2Falpine-java:jre8,java:8-jre). 
+
+**TODO**: Avoid third-party `anapsix/alpine-java` base image and use only `alpine` base image (or equivalent). Issue: Alpine Linux only comes with Open JDK 7, but Jena 3 needs Java 8.
+
+The `ENV` variables like `JENA_VERSION` and `FUSEKI_VERSION` determines which version of Jena and Fuseki are downloaded. Updating the version also requires updating the `JENA_SHA1` and `FUSEKI_SHA1` variables, which values
+should match the official Jena download `.tar.gz.sha1` hashes, as approved in their release `[VOTE]` emails.  
+
+Note that the [Jena download page](http://jena.apache.org/download/) do not link directly to the `sha` checksums, these can be found by modifying the `.md5` download links to a `sha1` extension, e.g. http://www.apache.org/dist/jena/binaries/apache-jena-3.0.0.tar.gz.sha1 or http://www.apache.org/dist/jena/binaries/apache-jena-fuseki-2.3.0.tar.gz.sha1
+
+The `JENA_MIRROR` and `FUSEKI_MIRROR` should be http://www.eu.apache.org/dist/ or http://www.us.apache.org/dist/ - **not** http://www.apache.org/dist/ 
+
+To minimize layer size, there's a single `RUN` with `wget`, `sha1sum`, `tar zxf` and `mv` - thus the temporary files are not part of the final image.
+
+Some files from the Apache Jena distributions are stripped, e.g. javadocs and the `fuseki.war` file.
+
+The Fuseki image includes some [helper scripts](jena-fuseki/load.sh) to do [tdb loading](https://jena.apache.org/documentation/tdb/commands.html) using `fuseki-server.jar`.
+
