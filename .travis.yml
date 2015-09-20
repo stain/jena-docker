@@ -6,10 +6,14 @@ services:
   - docker
 
 before_install:
-  - docker build -t jena .
+  - docker build -t jena jena
+  - docker build -t jena-fuseki jena-fuseki
   - echo "<http://example.com/a> <http://example.com/b> <http://example.com/c> ." > /tmp/example.ttl
 
 script:
   - docker run jena riot --version # Does it run at all?
   - docker run --volume /tmp:/rdf jena riot example.ttl > /tmp/example.nq
   - grep --quiet example.com /tmp/example.nq
+  - docker run --name fuseki -p 3030:3030 -d jena-fuseki
+  - wait 4; curl http://localhost:3030/ > /tmp/index.html # does it start?
+  - grep --quiet Fuseki /tmp/index.html
