@@ -19,5 +19,5 @@ script:
   - sleep 8
   - docker logs fuseki
   - docker logs fuseki | grep --quiet ^admin=
-  - docker logs fuseki | grep --quiet ^Started
+  - docker logs fuseki | grep --quiet Started
   - curl http://127.0.0.1:3030/ | grep --quiet Fuseki
