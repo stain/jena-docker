@@ -6,7 +6,7 @@
 
 [![Build Status](https://travis-ci.org/stain/jena-docker.svg)](https://travis-ci.org/stain/jena-docker)
 
-[![](https://badge.imagelayers.io/stain/jena:latest.svg)](https://imagelayers.io/?images=stain/jena:latest 'Get your own badge on imagelayers.io')
+[![](https://badge.imagelayers.io/stain/jena-fuseki:latest.svg)](https://imagelayers.io/?images=stain/jena-fuseki:latest 'jena-fuseki analysis at imagelayers.io')
 
 
 This is a [Docker](http://docker.io/) image for running

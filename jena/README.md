@@ -7,7 +7,7 @@
 
 [![Build Status](https://travis-ci.org/stain/jena-docker.svg)](https://travis-ci.org/stain/jena-docker)
 
-[![](https://badge.imagelayers.io/stain/jena:latest.svg)](https://imagelayers.io/?images=stain/jena:latest 'Get your own badge on imagelayers.io')
+[![](https://badge.imagelayers.io/stain/jena:latest.svg)](https://imagelayers.io/?images=stain/jena:latest 'jena-fuseki analysis at imagelayers.io')
 
 
 This docker image exposes the [Apache Jena](https://jena.apache.org/)
