@@ -16,5 +16,7 @@ script:
   - grep --quiet example.com /tmp/example.nq
   - sudo service docker restart ; sleep 10 # workaround for https://github.com/travis-ci/travis-ci/issues/4778
   - docker run --name fuseki -p 127.0.0.1:3030:3030 -d jena-fuseki
-  - wait 4; curl http://127.0.0.1:3030/ > /tmp/index.html # does it start?
-  - grep --quiet Fuseki /tmp/index.html
+  - sleep 2
+  - docker logs fuseki
+  - docker logs fuseki | grep --quiet ^admin=
+  - curl http://127.0.0.1:3030/ | grep --quiet Fuseki
