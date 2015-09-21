@@ -1,4 +1,4 @@
-# Jena Riot
+# Jena command line tools
 
 * Docker image: [stain/jena](https://hub.docker.com/r/stain/jena/)
 * Base images: [anapsix/alpine-java](https://hub.docker.com/r/anapsix/alpine-java/):jre8, [alpine](https://hub.docker.com/r/_/alpine/)
@@ -12,7 +12,8 @@
 
 This docker image exposes the [Apache Jena](https://jena.apache.org/)
 command line tool [riot](https://jena.apache.org/documentation/io/#command-line-tools)
-and its variants `turtle`, `ntriples`, `nquads`, `trig` and  `rdfxml`.
+and its variants (e.g. `turtle`, `rdfxml`), in addition to the other Jena 
+command line tools, like `rdfcompare`, `tdbloader` and `sparql`.
 
 ## License
 
@@ -81,6 +82,86 @@ To executable multiple `riot` commands within a Docker container:
 
 Note that this image is based on a minimal
 [Alpine Linux](http://alpinelinux.org/) installation.
+
+## Other command line tools
+
+All the command line tools of the Jena distribution are included.
+
+    docker run stain/jena ls /jena/bin
+    
+- arq
+- infer
+- iri
+- juuid
+- nquads
+- ntriples
+- qparse
+- rdfcat
+- rdfcompare
+- rdfcopy
+- rdfparse
+- rdfxml
+- riot
+- rset
+- rsparql
+- rupdate
+- schemagen
+- sparql
+- tdbbackup
+- tdbdump
+- tdbloader
+- tdbloader2
+- tdbloader2common
+- tdbloader2data
+- tdbloader2index
+- tdbquery
+- tdbstats
+- tdbupdate
+- trig
+- turtle
+- uparse
+- update
+- utf8
+- wwwdec
+- wwwenc
+
+Example:
+
+```
+stain@biggie:~/src/jena/apache-jena$ docker run stain/jena sparql -h
+sparql --data=<file> --query=<query>
+  Control
+      --explain              Explain and log query execution
+      --repeat=N or N,M      Do N times or N warmup and then M times (use for timing to overcome start up costs of Java)
+      --optimize=            Turn the query optimizer on or off (default: on)
+  Time
+      --time                 Time the operation
+  Query Engine
+      --engine=EngineName    Register another engine factory[ref]
+      --unengine=EngineName   Unregister an engine factory
+  Dataset
+      --data=FILE            Data for the datset - triple or quad formats
+      --graph=FILE           Graph for default graph of the datset
+      --namedGraph=FILE      Add a graph into the dataset as a named graph
+  Results
+      --results              Results format (Result set: text, XML, JSON, CSV, TSV; Graph: RDF serialization)
+      --desc=                Assembler description file
+  Query
+      --query, --file        File containing a query
+      --syntax, --in         Syntax of the query
+      --base                 Base URI for the query
+  Symbol definition
+      --set                  Set a configuration symbol to a value
+      --strict               Operate in strict SPARQL mode (no extensions of any kind)
+  General
+      -v   --verbose         Verbose
+      -q   --quiet           Run with minimal output
+      --debug                Output information for debugging
+      --help
+      --version              Version information
+```
+
+Note that you will need to use `docker run --volume` to make local files accessible to these commands.
 
 ## Contact
 
