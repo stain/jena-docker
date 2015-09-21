@@ -1,18 +1,11 @@
-# Jena Fuseki 2 docker image
+# Apache Jena Fuseki 2 docker image
 
-* Docker image: [stain/jena-fuseki](https://hub.docker.com/r/stain/jena-fuseki/)
-* Base images: [anapsix/alpine-java](https://hub.docker.com/r/anapsix/alpine-java/):jre8, [alpine](https://hub.docker.com/r/_/alpine/)
-* Source: [Dockerfile](https://github.com/stain/jena-docker/blob/master/jena-fuseki/Dockerfile), [Apache Jena Fuseki](http://jena.apache.org/download/)
+**Docker image:** [stain/jena-fuseki](https://registry.hub.docker.com/u/stain/jena-fuseki/)
 
-[![Build Status](https://travis-ci.org/stain/jena-docker.svg)](https://travis-ci.org/stain/jena-docker)
-
-[![](https://badge.imagelayers.io/stain/jena-fuseki:latest.svg)](https://imagelayers.io/?images=stain/jena-fuseki:latest 'jena-fuseki analysis at imagelayers.io')
-
-
-This is a [Docker](http://docker.io/) image for running
+This is a [Docker](http://docker.io/) image for running 
 [Apache Jena Fuseki](http://jena.apache.org/documentation/serving_data/) 2,
 which is a [SPARQL 1.1](http://www.w3.org/TR/sparql11-overview/) server with a
-web interface, backed by the
+web interface, backed by the 
 [Apache Jena TDB](http://jena.apache.org/documentation/tdb/) RDF triple store.
 
 Feel free to contact the [jena users
@@ -33,14 +26,14 @@ To expose Fuseki on a different port, modify `-p` and run `./fuseki-server --por
     docker run -p 8080:8080 -it stain/jena-fuseki ./fuseki-server --port=8080
 
 
-To load RDF graphs, you will need to log in as the `admin` user. To see the
+To load RDF graphs, you will need to log in as the `admin` user. To see the 
 automatically generated admin password, see the output from above, or
 use `docker logs` with the name of your container.
 
 Note that the password is only generated on the first run, e.g. when the
 volume `/fuseki` is an empty directory.
 
-You can override the admin-password using the form
+You can override the admin-password using the form 
 `-e ADMIN_PASSWORD=pw123`:
 
     docker run -p 3030:3030 -e ADMIN_PASSWORD=pw123 -it stain/jena-fuseki
@@ -73,18 +66,18 @@ disk space or speed requirements), specify it using `-v`:
 
     docker run -d --name fuseki -p 3030:3030 -v /ssd/data/fuseki:/fuseki -it stain/jena-fuseki
 
-Note that the `/fuseki` volume must only be accessed from a single Fuseki
-container at a time.
+Note that the `/fuseki` volume must only be accessed from a single Fuseki 
+container at a time.    
 
 To check the logs for the container you gave `--name fuseki`, use:
 
     docker logs fuseki
 
-To stop the named container, use:
+To stop the named container, use:    
 
     docker stop fuseki
 
-.. or press Ctrl-C if you started the container with `-it`.
+.. or press Ctrl-C if you started the container with `-it`.    
 
 To restart a named container (it will remember the volume and port config)
 
@@ -120,7 +113,7 @@ You will most likely want to load from a folder on the host computer by using
 `-v`, and into a data volume that you can then use with the regular fuseki.
 
 Before data loading, you must either stop the Fuseki container, or
-load the data into a brand new dataset that Fuseki doesn't know about yet.
+load the data into a brand new dataset that Fuseki doesn't know about yet. 
 To stop the docker container you named `fuseki`:
 
     docker stop fuseki
@@ -135,7 +128,7 @@ computer:
 
 **Tip:** You might find it benefitial to run data loading from the data staging
 directory in order to use tab-completion etc. without exposing the path on the
-host. The `./load.sh` will expand patterns like `*.ttl` - you might have to
+host. The `./load.sh` will expand patterns like `*.ttl` - you might have to 
 use single quotes (e.g. `'*.ttl'`) on the host to avoid them being expanded
 locally.
 
@@ -148,7 +141,7 @@ If you don't specify any filenames to `load.sh`, all filenames directly under
 graphs, see the `tdbloader` section below.
 
 **NOTE**: If you load data into a brand new `/fuseki` volume, a new random
-admin password will be set before you have started Fuseki.
+admin password will be set before you have started Fuseki. 
 You can either check the output of the data loading, or later override the
 password using `-e ADMIN_PASSWORD=pw123`.
 
@@ -163,19 +156,19 @@ persistence](#Data_persistence) above):
 
 If you created a brand new dataset, then in Fuseki go to *Manage datasets*,
 click **Add new dataset**, tick **Persistent** and provide the database name
-exactly as provided to `load.sh`, e.g. `chembl19`.
+exactly as provided to `load.sh`, e.g. `chembl19`. 
 
 Now go to *Dataset*, select from the dropdown menu, and try out *Info* and *Query*.
 
-**Tip**: It is possible to load a new dataset into the volume of a
+**Tip**: It is possible to load a new dataset into the volume of a 
 running Fuseki server, as long as you don't "create" it in Fuseki before
 `load.sh` has finished.
 
 
 ## Loading with tdbloader
 
-If you have more advanced requirements, like loading multiple datasets or named graphs, you can
-use [tdbloader](https://jena.apache.org/documentation/tdb/commands.html) directly together with
+If you have more advanced requirements, like loading multiple datasets or named graphs, you can 
+use [tdbloader](https://jena.apache.org/documentation/tdb/commands.html) directly together with 
 a [TDB assembler file](https://jena.apache.org/documentation/tdb/assembler.html).
 
 Note that Fuseki TDB datasets are sub-folders in `/fuseki/databases/`.
@@ -199,3 +192,4 @@ If you need to modify Fuseki's configuration further, you can use the equivalent
 and inspect `/fuseki` with the shell. Remember to restart fuseki afterwards:
 
     docker restart fuseki
+
