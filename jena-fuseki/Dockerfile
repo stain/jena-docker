@@ -25,8 +25,8 @@ RUN apk add --update pwgen && rm -rf /var/cache/apk/*
 
 
 # Update below according to https://jena.apache.org/download/
-ENV FUSEKI_SHA1 c2513b30a08ba284a4d71c587b9fc51e10f632ac
-ENV FUSEKI_VERSION 2.3.0
+ENV FUSEKI_SHA1 ba7aea73f27a735489fb84ec0c7894a53bdc34f9
+ENV FUSEKI_VERSION 2.3.1
 ENV FUSEKI_MIRROR http://www.eu.apache.org/dist/
 #
 
