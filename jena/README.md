@@ -1,7 +1,7 @@
 # Jena command line tools
 
 * Docker image: [stain/jena](https://hub.docker.com/r/stain/jena/)
-* Base images: [anapsix/alpine-java](https://hub.docker.com/r/anapsix/alpine-java/):jre8, [alpine](https://hub.docker.com/r/_/alpine/)
+* Base images: [alpine](https://hub.docker.com/r/_/alpine/):3.3
 * Source: [Dockerfile](https://github.com/stain/jena-docker/blob/master/jena/Dockerfile), [Apache Jena](http://jena.apache.org/download/)
 
 
@@ -12,7 +12,7 @@
 
 This docker image exposes the [Apache Jena](https://jena.apache.org/)
 command line tool [riot](https://jena.apache.org/documentation/io/#command-line-tools)
-and its variants (e.g. `turtle`, `rdfxml`), in addition to the other Jena 
+and its variants (e.g. `turtle`, `rdfxml`), in addition to the other Jena
 command line tools, like `rdfcompare`, `tdbloader` and `sparql`.
 
 ## License
@@ -22,8 +22,8 @@ Different licenses apply to files added by different [Docker layers](https://ima
 * stain/jena [Dockerfile](https://github.com/stain/jena-docker): [Apache License, version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
 * Apache Jena (`/jena` in the image): [Apache License, version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
   See also: `docker run stain/jena cat /jena/NOTICE`
-* Oracle JDK (`/opt/jdk` in the image): [Oracle Binary Code License Agreement for the Java SE Platform Products and JavaFX](http://java.com/license)
-  See also: `docker run stain/jena cat /opt/jdk/THIRDPARTYLICENSEREADME.txt`
+* OpenJDK (`//usr/lib/jvm/default-jvm/j` in the image): [GPL 2.0 with Classpath exception](http://openjdk.java.net/legal/gplv2+ce.html)
+  See also: `docker run stain/jena cat /usr/lib/jvm/default-jvm/jre/LICENSE`
 * Alpine Linux (rest of `/`): Unknown ([GPL 3?](http://www.gnu.org/licenses/gpl-3.0))
 
 ## Usage
@@ -88,7 +88,7 @@ Note that this image is based on a minimal
 All the command line tools of the Jena distribution are included.
 
     docker run stain/jena ls /jena/bin
-    
+
 - arq
 - infer
 - iri

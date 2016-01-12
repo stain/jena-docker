@@ -14,10 +14,10 @@
 #   limitations under the License.
 
 # ideally:
-#FROM alpine:3.xx
-#RUN apk add --update openjdk8-jre && rm -rf /var/cache/apk/*
-# .. but as JDK8 is not yet in alpine, instead use:
-FROM anapsix/alpine-java:jre8
+FROM alpine:3.3
+RUN apk add --update openjdk8-jre && rm -rf /var/cache/apk/*
+# alternatively:
+#FROM anapsix/alpine-java:jre8
 MAINTAINER Stian Soiland-Reyes <stain@apache.org>
 
 # Update below according to https://jena.apache.org/download/

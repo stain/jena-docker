@@ -1,7 +1,7 @@
 # Jena Fuseki 2 docker image
 
 * Docker image: [stain/jena-fuseki](https://hub.docker.com/r/stain/jena-fuseki/)
-* Base images: [anapsix/alpine-java](https://hub.docker.com/r/anapsix/alpine-java/):jre8, [alpine](https://hub.docker.com/r/_/alpine/)
+* Base images: [alpine](https://hub.docker.com/r/_/alpine/):3.3
 * Source: [Dockerfile](https://github.com/stain/jena-docker/blob/master/jena-fuseki/Dockerfile), [Apache Jena Fuseki](http://jena.apache.org/download/)
 
 [![Build Status](https://travis-ci.org/stain/jena-docker.svg)](https://travis-ci.org/stain/jena-docker)
@@ -18,6 +18,17 @@ web interface, backed by the
 Feel free to contact the [jena users
 list](http://jena.apache.org/help_and_support/) for any questions on using
 Jena or Fuseki.
+
+## License
+
+Different licenses apply to files added by different [Docker layers](https://imagelayers.io/?images=stain%2Fjena).
+
+* stain/jena-fuseki [Dockerfile](https://github.com/stain/jena-docker): [Apache License, version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
+* Apache Jena (`/jena-fuseki` in the image): [Apache License, version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
+  See also: `docker run stain/jena cat /jena/NOTICE`
+* OpenJDK (`//usr/lib/jvm/default-jvm/j` in the image): [GPL 2.0 with Classpath exception](http://openjdk.java.net/legal/gplv2+ce.html)
+  See also: `docker run stain/jena cat /usr/lib/jvm/default-jvm/jre/LICENSE`
+* Alpine Linux (rest of `/`): Unknown ([GPL 3?](http://www.gnu.org/licenses/gpl-3.0))
 
 
 ## Use
