@@ -15,7 +15,7 @@
 
 # ideally:
 FROM alpine:3.3
-RUN apk add --update openjdk8-jre && rm -rf /var/cache/apk/*
+RUN apk add --update openjdk8-jre bash && rm -rf /var/cache/apk/*
 # alternatively:
 #FROM anapsix/alpine-java:jre8
 MAINTAINER Stian Soiland-Reyes <stain@apache.org>
