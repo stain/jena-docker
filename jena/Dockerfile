@@ -21,8 +21,8 @@ FROM anapsix/alpine-java:jre8
 MAINTAINER Stian Soiland-Reyes <stain@apache.org>
 
 # Update below according to https://jena.apache.org/download/
-ENV JENA_SHA1 0563da22020560ea2b08cc011bebf878c10515ce
-ENV JENA_VERSION 3.0.0
+ENV JENA_SHA1 f44518948895c10e99eda081279740c9589cd079
+ENV JENA_VERSION 3.0.1
 ENV JENA_MIRROR http://www.eu.apache.org/dist/
 ENV JENA_ARCHIVE http://archive.apache.org/dist/
 #
