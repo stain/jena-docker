@@ -28,6 +28,7 @@ RUN apk add --update pwgen && rm -rf /var/cache/apk/*
 ENV FUSEKI_SHA1 c2513b30a08ba284a4d71c587b9fc51e10f632ac
 ENV FUSEKI_VERSION 2.3.0
 ENV FUSEKI_MIRROR http://www.eu.apache.org/dist/
+ENV FUSEKI_ARCHIVE http://archive.apache.org/dist/
 #
 
 # Config and data
@@ -42,7 +43,8 @@ WORKDIR /tmp
 # sha1 checksum
 RUN echo "$FUSEKI_SHA1  fuseki.tar.gz" > fuseki.tar.gz.sha1
 # Download/check/unpack/move in one go (to reduce image size)
-RUN wget -O fuseki.tar.gz $FUSEKI_MIRROR/jena/binaries/apache-jena-fuseki-$FUSEKI_VERSION.tar.gz && \
+RUN     wget -O fuseki.tar.gz $FUSEKI_MIRROR/jena/binaries/apache-jena-fuseki-$FUSEKI_VERSION.tar.gz || \
+        wget -O fuseki.tar.gz $FUSEKI_ARCHIVE/jena/binaries/apache-jena-fuseki-$FUSEKI_VERSION.tar.gz && \
         sha1sum -c fuseki.tar.gz.sha1 && \
         tar zxf fuseki.tar.gz && \
         mv apache-jena-fuseki* $FUSEKI_HOME && \
