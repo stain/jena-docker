@@ -21,8 +21,8 @@ RUN apk add --update openjdk8-jre bash && rm -rf /var/cache/apk/*
 MAINTAINER Stian Soiland-Reyes <stain@apache.org>
 
 # Update below according to https://jena.apache.org/download/
-ENV JENA_SHA1 f44518948895c10e99eda081279740c9589cd079
-ENV JENA_VERSION 3.0.1
+ENV JENA_SHA1 c269016b4e71fe7f72708e299f87e7940f495eb8
+ENV JENA_VERSION 3.1.0
 ENV JENA_MIRROR http://www.eu.apache.org/dist/
 ENV JENA_ARCHIVE http://archive.apache.org/dist/
 #
