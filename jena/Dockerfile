@@ -23,8 +23,8 @@ MAINTAINER Stian Soiland-Reyes <stain@apache.org>
 # Update below according to https://jena.apache.org/download/
 ENV JENA_SHA1 c269016b4e71fe7f72708e299f87e7940f495eb8
 ENV JENA_VERSION 3.1.0
-ENV JENA_MIRROR http://www.eu.apache.org/dist/
-ENV JENA_ARCHIVE http://archive.apache.org/dist/
+ENV JENA_MIRROR https://www.eu.apache.org/dist/
+ENV JENA_ARCHIVE https://archive.apache.org/dist/
 #
 
 WORKDIR /tmp
