@@ -24,9 +24,10 @@ ENV FUSEKI_BASE /fuseki
 # Installation folder
 ENV FUSEKI_HOME /jena-fuseki
 
-ENV MAVEN_REPOSITORY https://repo.maven.apache.org/maven2/
+ENV MAVEN_REPOSITORY https://repo.maven.apache.org/maven2
 ENV PACKAGE_PATH org/apache/jena/apache-jena-fuseki
 ENV FUSEKI_VERSION 2.0.0
+ENV FUSEKI_SHA1 57e5fbde8802bc328ed3213af414bb459a047c22
 
 
 ENV BUILD_DEPS curl
@@ -50,8 +51,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
     URL=$MAVEN_REPOSITORY_PATH/$FILE && \
     echo Downloading $URL && \
     curl -f -O $URL && \
-    curl -f -O $URL.sha1 && \
-    echo " " $FILE >> $FILE.sha1 && \
+    echo $FUSEKI_SHA1 "" $FILE > $FILE.sha1 && \
     cat $FILE.sha1 && \
     sha1sum -c $FILE.sha1 && \
     tar xzf $FILE && \
