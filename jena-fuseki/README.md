@@ -37,13 +37,13 @@ Different licenses apply to files added by different [Docker layers](https://ima
 
 To try out this image, try:
 
-    docker run -p 3030:3030 -it stain/jena-fuseki
+    docker run -p 3030:3030 stain/jena-fuseki
 
 The Apache Jena Fuseki should then be available at http://localhost:3030/
 
 To expose Fuseki on a different port, modify `-p` and run `./fuseki-server --port=PORT` (see [JENA-868](https://issues.apache.org/jira/browse/JENA-868)):
 
-    docker run -p 8080:8080 -it stain/jena-fuseki ./fuseki-server --port=8080
+    docker run -p 8080:8080 stain/jena-fuseki ./fuseki-server --port=8080
 
 
 To load RDF graphs, you will need to log in as the `admin` user. To see the
@@ -56,12 +56,12 @@ volume `/fuseki` is an empty directory.
 You can override the admin-password using the form
 `-e ADMIN_PASSWORD=pw123`:
 
-    docker run -p 3030:3030 -e ADMIN_PASSWORD=pw123 -it stain/jena-fuseki
+    docker run -p 3030:3030 -e ADMIN_PASSWORD=pw123 stain/jena-fuseki
 
 To specify Java settings such as the amount of memory to allocate for the
 heap (default: 1200 MiB), set the `JVM_ARGS` environment with `-e`:
 
-    docker run -p 3030:3030 -e JVM_ARGS=-Xmx2g -it stain/jena-fuseki
+    docker run -p 3030:3030 -e JVM_ARGS=-Xmx2g stain/jena-fuseki
 
 
 ## Data persistence
@@ -84,7 +84,7 @@ jena-fuseki docker image without losing the data. The command below also uses
 If you want to store fuseki data in a specified location on the host (e.g. for
 disk space or speed requirements), specify it using `-v`:
 
-    docker run -d --name fuseki -p 3030:3030 -v /ssd/data/fuseki:/fuseki -it stain/jena-fuseki
+    docker run -d --name fuseki -p 3030:3030 -v /ssd/data/fuseki:/fuseki stain/jena-fuseki
 
 Note that the `/fuseki` volume must only be accessed from a single Fuseki
 container at a time.
@@ -97,7 +97,7 @@ To stop the named container, use:
 
     docker stop fuseki
 
-.. or press Ctrl-C if you started the container with `-it`.
+.. or press Ctrl-C.
 
 To restart a named container (it will remember the volume and port config)
 
