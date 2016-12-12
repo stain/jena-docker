@@ -1,22 +1,24 @@
 # Jena Fuseki 2 docker image
 
 * Docker image: [stain/jena-fuseki](https://hub.docker.com/r/stain/jena-fuseki/)
-* Base images: [alpine](https://hub.docker.com/r/_/alpine/):3.3
+* Base images: [alpine](https://hub.docker.com/r/_/alpine/):3.4
 * Source: [Dockerfile](https://github.com/stain/jena-docker/blob/master/jena-fuseki/Dockerfile), [Apache Jena Fuseki](http://jena.apache.org/download/)
 
 [![Build Status](https://travis-ci.org/stain/jena-docker.svg)](https://travis-ci.org/stain/jena-docker)
 
-[![](https://badge.imagelayers.io/stain/jena-fuseki:latest.svg)](https://imagelayers.io/?images=stain/jena-fuseki:latest 'jena-fuseki analysis at imagelayers.io')
+[![](https://images.microbadger.com/badges/image/stain/jena-fuseki.svg)](https://microbadger.com/images/stain/jena-fuseki "Get your own image badge on microbadger.com")
+
+[![](https://images.microbadger.com/badges/version/stain/jena-fuseki.svg)](https://microbadger.com/images/stain/jena-fuseki "Get your own version badge on microbadger.com")
 
 
-This is a [Docker](http://docker.io/) image for running
-[Apache Jena Fuseki](http://jena.apache.org/documentation/serving_data/) 2,
+This is a [Docker](https://www.docker.com/) image for running
+[Apache Jena Fuseki 2](https://jena.apache.org/documentation/fuseki2/),
 which is a [SPARQL 1.1](http://www.w3.org/TR/sparql11-overview/) server with a
 web interface, backed by the
-[Apache Jena TDB](http://jena.apache.org/documentation/tdb/) RDF triple store.
+[Apache Jena TDB](https://jena.apache.org/documentation/tdb/) RDF triple store.
 
 Feel free to contact the [jena users
-list](http://jena.apache.org/help_and_support/) for any questions on using
+list](https://jena.apache.org/help_and_support/) for any questions on using
 Jena or Fuseki.
 
 ## License
