@@ -15,8 +15,8 @@
 
 
 # ideally:
-FROM alpine:3.3
-RUN apk add --update openjdk8-jre pwgen bash && rm -rf /var/cache/apk/*
+FROM alpine:3.4
+RUN apk add --update openjdk8-jre pwgen bash wget ca-certificates && rm -rf /var/cache/apk/*
 # alternatively:
 #FROM anapsix/alpine-java:jre8
 #RUN apk add --update pwgen && rm -rf /var/cache/apk/*
@@ -26,8 +26,8 @@ MAINTAINER Stian Soiland-Reyes <stain@apache.org>
 
 
 # Update below according to https://jena.apache.org/download/
-ENV FUSEKI_SHA1 be9be0f14bdc9232d3c9d56a34ca9e1bf962ae69
-ENV FUSEKI_VERSION 2.4.0
+ENV FUSEKI_SHA1 d9d73ef66eaec85af1f7939aaa79bf8546a0a493
+ENV FUSEKI_VERSION 2.4.1
 ENV FUSEKI_MIRROR https://www.eu.apache.org/dist/
 ENV FUSEKI_ARCHIVE https://archive.apache.org/dist/
 #
