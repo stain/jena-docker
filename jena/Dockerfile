@@ -21,6 +21,7 @@ RUN apk add --update --no-cache openjdk8-jre bash wget ca-certificates && rm -rf
 MAINTAINER Stian Soiland-Reyes <stain@apache.org>
 
 # Update below according to https://jena.apache.org/download/
+# and .sha1 from https://www.apache.org/dist/jena/binaries/
 ENV JENA_SHA1 a47ede6aad31cde586f33a0b22389bff91257543
 ENV JENA_VERSION 3.1.1
 ENV JENA_MIRROR https://www.eu.apache.org/dist/
