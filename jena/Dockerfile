@@ -14,15 +14,15 @@
 #   limitations under the License.
 
 # ideally:
-FROM alpine:3.3
-RUN apk add --update openjdk8-jre bash && rm -rf /var/cache/apk/*
+FROM alpine:3.4
+RUN apk add --update --no-cache openjdk8-jre bash wget ca-certificates && rm -rf /var/cache/apk/*
 # alternatively:
 #FROM anapsix/alpine-java:jre8
 MAINTAINER Stian Soiland-Reyes <stain@apache.org>
 
 # Update below according to https://jena.apache.org/download/
-ENV JENA_SHA1 c269016b4e71fe7f72708e299f87e7940f495eb8
-ENV JENA_VERSION 3.1.0
+ENV JENA_SHA1 a47ede6aad31cde586f33a0b22389bff91257543
+ENV JENA_VERSION 3.1.1
 ENV JENA_MIRROR https://www.eu.apache.org/dist/
 ENV JENA_ARCHIVE https://archive.apache.org/dist/
 #
