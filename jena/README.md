@@ -1,14 +1,15 @@
 # Jena command line tools
 
 * Docker image: [stain/jena](https://hub.docker.com/r/stain/jena/)
-* Base images: [alpine](https://hub.docker.com/r/_/alpine/):3.3
+* Base images: [alpine](https://hub.docker.com/r/_/alpine/):3.4
 * Source: [Dockerfile](https://github.com/stain/jena-docker/blob/master/jena/Dockerfile), [Apache Jena](http://jena.apache.org/download/)
 
 
 [![Build Status](https://travis-ci.org/stain/jena-docker.svg)](https://travis-ci.org/stain/jena-docker)
 
-[![](https://badge.imagelayers.io/stain/jena:latest.svg)](https://imagelayers.io/?images=stain/jena:latest 'jena-fuseki analysis at imagelayers.io')
+[![](https://images.microbadger.com/badges/image/stain/jena.svg)](https://microbadger.com/images/stain/jena "Get your own image badge on microbadger.com")
 
+[![](https://images.microbadger.com/badges/version/stain/jena.svg)](https://microbadger.com/images/stain/jena "Get your own version badge on microbadger.com")
 
 This docker image exposes the [Apache Jena](https://jena.apache.org/)
 command line tool [riot](https://jena.apache.org/documentation/io/#command-line-tools)
@@ -81,7 +82,9 @@ To executable multiple `riot` commands within a Docker container:
     docker run -it stain/jena sh
 
 Note that this image is based on a minimal
-[Alpine Linux](http://alpinelinux.org/) installation.
+[Alpine Linux](http://alpinelinux.org/) installation. You can use
+the `apk` command to install additional tools.
+
 
 ## Other command line tools
 
