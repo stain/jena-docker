@@ -13,11 +13,8 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 
-# ideally:
 FROM alpine:3.4
 RUN apk add --update --no-cache openjdk8-jre bash wget ca-certificates && rm -rf /var/cache/apk/*
-# alternatively:
-#FROM anapsix/alpine-java:jre8
 MAINTAINER Stian Soiland-Reyes <stain@apache.org>
 
 # Update below according to https://jena.apache.org/download/

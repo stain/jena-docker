@@ -14,12 +14,8 @@
 #   limitations under the License.
 
 
-# ideally:
 FROM alpine:3.4
 RUN apk add --update openjdk8-jre pwgen bash wget ca-certificates && rm -rf /var/cache/apk/*
-# alternatively:
-#FROM anapsix/alpine-java:jre8
-#RUN apk add --update pwgen && rm -rf /var/cache/apk/*
 
 MAINTAINER Stian Soiland-Reyes <stain@apache.org>
 
