@@ -23,7 +23,7 @@ Jena or Fuseki.
 
 ## License
 
-Different licenses apply to files added by different [Docker layers](https://imagelayers.io/?images=stain%2Fjena).
+Different licenses apply to files added by different Docker layers:
 
 * stain/jena-fuseki [Dockerfile](https://github.com/stain/jena-docker): [Apache License, version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
 * Apache Jena (`/jena-fuseki` in the image): [Apache License, version 2.0](http://www.apache.org/licenses/LICENSE-2.0)

@@ -18,7 +18,7 @@ command line tools, like `rdfcompare`, `tdbloader` and `sparql`.
 
 ## License
 
-Different licenses apply to files added by different [Docker layers](https://imagelayers.io/?images=stain%2Fjena).
+Different licenses apply to files added by different Docker layers:
 
 * stain/jena [Dockerfile](https://github.com/stain/jena-docker): [Apache License, version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
 * Apache Jena (`/jena` in the image): [Apache License, version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
