@@ -16,6 +16,7 @@
 #FROM alpine:3.4
 FROM java:8-jre-alpine
 #RUN apk add --update --no-cache openjdk8-jre bash wget ca-certificates && rm -rf /var/cache/apk/*
+RUN apk add --update --no-cache bash wget ca-certificates && rm -rf /var/cache/apk/*
 MAINTAINER Stian Soiland-Reyes <stain@apache.org>
 
 # Update below according to https://jena.apache.org/download/

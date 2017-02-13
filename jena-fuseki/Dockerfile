@@ -17,6 +17,7 @@
 #FROM alpine:3.4
 #RUN apk add --update openjdk8-jre pwgen bash wget ca-certificates && rm -rf /var/cache/apk/*
 FROM java:8-jre-alpine
+RUN apk add --update pwgen bash wget ca-certificates && rm -rf /var/cache/apk/*
 
 MAINTAINER Stian Soiland-Reyes <stain@apache.org>
 
