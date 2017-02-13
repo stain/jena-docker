@@ -1,7 +1,7 @@
 # Jena command line tools
 
 * Docker image: [stain/jena](https://hub.docker.com/r/stain/jena/)
-* Base images: [alpine](https://hub.docker.com/r/_/alpine/):3.4
+* Base images: [java](https://hub.docker.com/r/_/java/):8-jre-alpine
 * Source: [Dockerfile](https://github.com/stain/jena-docker/blob/master/jena/Dockerfile), [Apache Jena](http://jena.apache.org/download/)
 
 

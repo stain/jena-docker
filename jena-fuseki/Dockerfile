@@ -14,18 +14,19 @@
 #   limitations under the License.
 
 
-FROM alpine:3.4
-RUN apk add --update openjdk8-jre pwgen bash wget ca-certificates && rm -rf /var/cache/apk/*
+#FROM alpine:3.4
+#RUN apk add --update openjdk8-jre pwgen bash wget ca-certificates && rm -rf /var/cache/apk/*
+FROM java:8-jre-alpine
 
 MAINTAINER Stian Soiland-Reyes <stain@apache.org>
 
 
 
 # Update below according to https://jena.apache.org/download/
-ENV FUSEKI_SHA1 d9d73ef66eaec85af1f7939aaa79bf8546a0a493
-ENV FUSEKI_VERSION 2.4.1
-ENV FUSEKI_MIRROR https://www.eu.apache.org/dist/
-ENV FUSEKI_ARCHIVE https://archive.apache.org/dist/
+ENV FUSEKI_SHA1 945ba476c5ffe946e3679352fc5b1edd3eb09334
+ENV FUSEKI_VERSION 2.5.0
+ENV FUSEKI_MIRROR http://www.eu.apache.org/dist/
+ENV FUSEKI_ARCHIVE http://archive.apache.org/dist/
 #
 
 # Config and data

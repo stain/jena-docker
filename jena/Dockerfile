@@ -13,16 +13,17 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 
-FROM alpine:3.4
-RUN apk add --update --no-cache openjdk8-jre bash wget ca-certificates && rm -rf /var/cache/apk/*
+#FROM alpine:3.4
+FROM java:8-jre-alpine
+#RUN apk add --update --no-cache openjdk8-jre bash wget ca-certificates && rm -rf /var/cache/apk/*
 MAINTAINER Stian Soiland-Reyes <stain@apache.org>
 
 # Update below according to https://jena.apache.org/download/
 # and .sha1 from https://www.apache.org/dist/jena/binaries/
-ENV JENA_SHA1 a47ede6aad31cde586f33a0b22389bff91257543
-ENV JENA_VERSION 3.1.1
-ENV JENA_MIRROR https://www.eu.apache.org/dist/
-ENV JENA_ARCHIVE https://archive.apache.org/dist/
+ENV JENA_SHA1 c055dbbe7d18e665adf757a713aa7fcdc4717c85
+ENV JENA_VERSION 3.2.0
+ENV JENA_MIRROR http://www.eu.apache.org/dist/
+ENV JENA_ARCHIVE http://archive.apache.org/dist/
 #
 
 WORKDIR /tmp
