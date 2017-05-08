@@ -8,7 +8,7 @@
 
 [![](https://images.microbadger.com/badges/image/stain/jena-fuseki.svg)](https://microbadger.com/images/stain/jena-fuseki "Get your own image badge on microbadger.com")
 
-[![](https://images.microbadger.com/badges/version/stain/jena-fuseki.svg)](https://microbadger.com/images/stain/jena-fuseki "Get your own version badge on microbadger.com")
+[![](https://images.microbadger.com/badges/version/stain/jena-fuseki:2.6.0.svg)](https://github.com/stain/jena-docker/ "Jena Fuseki 2.6.0")
 
 
 This is a [Docker](https://www.docker.com/) image for running
@@ -25,7 +25,7 @@ Jena or Fuseki.
 
 Different licenses apply to files added by different Docker layers:
 
-* stain/jena-fuseki [Dockerfile](https://github.com/stain/jena-docker): [Apache License, version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
+* stain/jena-fuseki [Dockerfile](https://github.com/stain/jena-docker/blob/master/jena-fuseki/Dockerfile): [Apache License, version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
 * Apache Jena (`/jena-fuseki` in the image): [Apache License, version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
   See also: `docker run stain/jena cat /jena/NOTICE`
 * OpenJDK (`/usr/lib/jvm/default-jvm/j` in the image): [GPL 2.0 with Classpath exception](http://openjdk.java.net/legal/gplv2+ce.html)
