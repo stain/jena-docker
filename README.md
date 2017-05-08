@@ -13,12 +13,10 @@ These are currently available from the Docker Hub as:
  - [stain/jena](https://hub.docker.com/r/stain/jena/)
  - [stain/jena-fuseki](https://hub.docker.com/r/stain/jena-fuseki/)
 
-Note that although these Docker images are based on the official Apache Jena releases, 
-they do **not** constitute official releases from Apache Software Foundation.
+Note that although these Docker images are based on the official Apache Jena releases
+and do not alter them in any way, they do **not** constitute official releases
+from Apache Software Foundation.
 
-See also [JENA-909](https://issues.apache.org/jira/browse/JENA-909) which proposes
-official Jena Docker images.
- 
 ## Building
 
 ```shell
@@ -28,15 +26,14 @@ docker build -t jena-fuseki jena-fuseki
  
 ## Dockerfile overview
 
-The `Dockerfile`s for both images use [anapsix/alpine-java](https://hub.docker.com/r/anapsix/alpine-java/) as a base image, which 
-unlike [java](https://hub.docker.com/r/anapsix/alpine-java/) clocks in at just [174 vs 488 MB](https://imagelayers.io/?images=anapsix%2Falpine-java:jre8,java:8-jre). 
+The `Dockerfile`s for both images use the official [java:8-jre-alpine](https://hub.docker.com/r/_/java/) base image, which is based on 
+the [alpine](https://hub.docker.com/_/alpine/) image; this clocks in at about [40 MB](https://microbadger.com/images/java:8-jre-alpine)
 
-**TODO**: Avoid third-party `anapsix/alpine-java` base image and use only `alpine` base image (or equivalent). Issue: Alpine Linux only comes with Open JDK 7, but Jena 3 needs Java 8.
 
 The `ENV` variables like `JENA_VERSION` and `FUSEKI_VERSION` determines which version of Jena and Fuseki are downloaded. Updating the version also requires updating the `JENA_SHA1` and `FUSEKI_SHA1` variables, which values
 should match the official Jena download `.tar.gz.sha1` hashes, as approved in their release `[VOTE]` emails.  
 
-Note that the [Jena download page](http://jena.apache.org/download/) do not link directly to the `sha` checksums, these can be found by modifying the `.md5` download links to a `sha1` extension, e.g. http://www.apache.org/dist/jena/binaries/apache-jena-3.0.0.tar.gz.sha1 or http://www.apache.org/dist/jena/binaries/apache-jena-fuseki-2.3.0.tar.gz.sha1
+Note that the [Jena download page](http://jena.apache.org/download/) do not link directly to the `sha` checksums, these can be found by modifying the `.md5` download links to a `sha1` extension, e.g. `https://www.apache.org/dist/jena/binaries/apache-jena-3.0.0.tar.gz.sha1` or `https://www.apache.org/dist/jena/binaries/apache-jena-fuseki-2.3.0.tar.gz.sha1`. Alternatively, browse https://www.apache.org/dist/jena/binaries/
 
 The `JENA_MIRROR` and `FUSEKI_MIRROR` should be http://www.eu.apache.org/dist/ or http://www.us.apache.org/dist/ - **not** http://www.apache.org/dist/ 
 
