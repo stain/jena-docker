@@ -24,8 +24,8 @@ MAINTAINER Stian Soiland-Reyes <stain@apache.org>
 
 
 # Update below according to https://jena.apache.org/download/
-ENV FUSEKI_SHA1 945ba476c5ffe946e3679352fc5b1edd3eb09334
-ENV FUSEKI_VERSION 2.5.0
+ENV FUSEKI_SHA1 92f27e01268ad47737bafd164474e36238351c86
+ENV FUSEKI_VERSION 2.6.0
 ENV FUSEKI_MIRROR http://www.eu.apache.org/dist/
 ENV FUSEKI_ARCHIVE http://archive.apache.org/dist/
 #
