@@ -9,7 +9,7 @@
 
 [![](https://images.microbadger.com/badges/image/stain/jena.svg)](https://microbadger.com/images/stain/jena "Get your own image badge on microbadger.com")
 
-[![](https://images.microbadger.com/badges/version/stain/jena:3.3.0.svg)](https://github.com/stain/jena-docker/tree/master/jena "Jena 3.3.0")
+[![](https://images.microbadger.com/badges/version/stain/jena:3.4.0.svg)](https://github.com/stain/jena-docker/tree/master/jena "Jena 3.4.0")
 
 This docker image exposes the [Apache Jena](https://jena.apache.org/)
 command line tool [riot](https://jena.apache.org/documentation/io/#command-line-tools)

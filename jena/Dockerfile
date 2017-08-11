@@ -21,8 +21,8 @@ MAINTAINER Stian Soiland-Reyes <stain@apache.org>
 
 # Update below according to https://jena.apache.org/download/
 # and .sha1 from https://www.apache.org/dist/jena/binaries/
-ENV JENA_SHA1 a4517257b3d104d8d2934b1cb92b6cfac4716f74
-ENV JENA_VERSION 3.3.0
+ENV JENA_SHA1 845a298579286a68d4b20791b7beb0ada42bc86b
+ENV JENA_VERSION 3.4.0
 ENV JENA_MIRROR http://www.eu.apache.org/dist/
 ENV JENA_ARCHIVE http://archive.apache.org/dist/
 #
