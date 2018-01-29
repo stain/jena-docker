@@ -8,7 +8,7 @@
 
 [![](https://images.microbadger.com/badges/image/stain/jena-fuseki.svg)](https://microbadger.com/images/stain/jena-fuseki "Get your own image badge on microbadger.com")
 
-[![](https://images.microbadger.com/badges/version/stain/jena-fuseki:3.4.0.svg)](https://github.com/stain/jena-docker/ "Jena Fuseki 3.4.0")
+[![](https://images.microbadger.com/badges/version/stain/jena-fuseki:3.6.0.svg)](https://github.com/stain/jena-docker/ "Jena Fuseki 3.6.0")
 
 
 This is a [Docker](https://www.docker.com/) image for running
