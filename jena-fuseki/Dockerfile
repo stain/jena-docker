@@ -24,8 +24,8 @@ MAINTAINER Stian Soiland-Reyes <stain@apache.org>
 
 
 # Update below according to https://jena.apache.org/download/
-ENV FUSEKI_SHA1 22db12165b820e05f07bee5688c22db04b521467
-ENV FUSEKI_VERSION 3.6.0
+ENV FUSEKI_SHA512 e4102e31c6fdead110a54aeaf65d54d78d225f931ef4f5cd6a0c4a75b66077f2160c7db99944df5167956104967f3830860d8f2910e406967c87ec562f1f2038
+ENV FUSEKI_VERSION 3.8.0
 ENV FUSEKI_MIRROR http://www.eu.apache.org/dist/
 ENV FUSEKI_ARCHIVE http://archive.apache.org/dist/
 #
@@ -39,12 +39,12 @@ ENV FUSEKI_BASE /fuseki
 ENV FUSEKI_HOME /jena-fuseki
 
 WORKDIR /tmp
-# sha1 checksum
-RUN echo "$FUSEKI_SHA1  fuseki.tar.gz" > fuseki.tar.gz.sha1
+# sha512 checksum
+RUN echo "$FUSEKI_SHA512  fuseki.tar.gz" > fuseki.tar.gz.sha512
 # Download/check/unpack/move in one go (to reduce image size)
 RUN     wget -O fuseki.tar.gz $FUSEKI_MIRROR/jena/binaries/apache-jena-fuseki-$FUSEKI_VERSION.tar.gz || \
         wget -O fuseki.tar.gz $FUSEKI_ARCHIVE/jena/binaries/apache-jena-fuseki-$FUSEKI_VERSION.tar.gz && \
-        sha1sum -c fuseki.tar.gz.sha1 && \
+        sha512sum -c fuseki.tar.gz.sha512 && \
         tar zxf fuseki.tar.gz && \
         mv apache-jena-fuseki* $FUSEKI_HOME && \
         rm fuseki.tar.gz* && \
