@@ -21,8 +21,8 @@ MAINTAINER Stian Soiland-Reyes <stain@apache.org>
 
 # Update below according to https://jena.apache.org/download/
 # and .sha512 from https://www.apache.org/dist/jena/binaries/
-ENV JENA_SHA512 eb28d5fb50589377a24016472e69808cf08d1091c2527e8c81fc0d1e4b4ca842e2eacaf9fa1c2c7b31d45c32266648dd072600c032aca84ab1d0a675bca8b94d
-ENV JENA_VERSION 3.7.0
+ENV JENA_SHA512 0ebf2ecef04bd3534d471fc004425df905ee19d0d9def67d7b1531b49c9de20557dc5a53ae455b2ec7abc6592bfd8c70d6e68cba40cc4380e9313b669cae3383
+ENV JENA_VERSION 3.8.0
 ENV JENA_MIRROR http://www.eu.apache.org/dist/
 ENV JENA_ARCHIVE http://archive.apache.org/dist/
 #
