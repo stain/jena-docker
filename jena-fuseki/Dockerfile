@@ -25,8 +25,8 @@ MAINTAINER Stian Soiland-Reyes <stain@apache.org>
 
 # Update below according to https://jena.apache.org/download/ and
 # corresponding *.tar.gz.sha512 from https://www.apache.org/dist/jena/binaries/
-ENV FUSEKI_SHA512 1c31466ee650d4f30e08b83eafe473b5e7e5e48ca4b29ea58db7126d7fed04e1865fef42ec83d3c9a699b8191712e950324950fe95eabaed86430064c128cd17
-ENV FUSEKI_VERSION 3.9.0
+ENV FUSEKI_SHA512 2d5c4e245d0d03bc994248dd43f718b8467d5b81204e2894abba86ec20b66939c84134580618d91d9b15bd90d90b090ab4bc691ae8778eb060d06df117dda8bb
+ENV FUSEKI_VERSION 3.10.0
 # Tip: No need for https as we've coded the sha512 above
 ENV FUSEKI_MIRROR http://www.eu.apache.org/dist/
 ENV FUSEKI_ARCHIVE http://archive.apache.org/dist/
