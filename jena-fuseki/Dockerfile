@@ -17,7 +17,7 @@
 #FROM alpine:3.4
 #RUN apk add --update openjdk8-jre pwgen bash wget ca-certificates && rm -rf /var/cache/apk/*
 FROM java:8-jre-alpine
-RUN apk add --update pwgen bash wget ca-certificates && rm -rf /var/cache/apk/*
+RUN apk add --update pwgen bash curl ca-certificates && rm -rf /var/cache/apk/*
 
 MAINTAINER Stian Soiland-Reyes <stain@apache.org>
 
@@ -44,8 +44,8 @@ WORKDIR /tmp
 # sha512 checksum
 RUN echo "$FUSEKI_SHA512  fuseki.tar.gz" > fuseki.tar.gz.sha512
 # Download/check/unpack/move in one go (to reduce image size)
-RUN     wget -O fuseki.tar.gz $FUSEKI_MIRROR/jena/binaries/apache-jena-fuseki-$FUSEKI_VERSION.tar.gz || \
-        wget -O fuseki.tar.gz $FUSEKI_ARCHIVE/jena/binaries/apache-jena-fuseki-$FUSEKI_VERSION.tar.gz && \
+RUN     curl $FUSEKI_MIRROR/jena/binaries/apache-jena-fuseki-$FUSEKI_VERSION.tar.gz > fuseki.tar.gz || \
+        curl $FUSEKI_ARCHIVE/jena/binaries/apache-jena-fuseki-$FUSEKI_VERSION.tar.gz > fuseki.tar.gz && \
         sha512sum -c fuseki.tar.gz.sha512 && \
         tar zxf fuseki.tar.gz && \
         mv apache-jena-fuseki* $FUSEKI_HOME && \
