@@ -19,10 +19,10 @@ FROM java:8-jre-alpine
 RUN apk add --update --no-cache bash wget ca-certificates && rm -rf /var/cache/apk/*
 MAINTAINER Stian Soiland-Reyes <stain@apache.org>
 
-# Update below according to https://jena.apache.org/download/ and
-# corresponding *.tar.gz.sha512 from https://www.apache.org/dist/jena/binaries/
-ENV JENA_SHA512 fada08a9b444999cc542eb23f0aa5f30369d0fac6a4c9fe6571721b33cf2e48af8ae857eb2eff7d306e2d3187d0c3516bdaea474a74e25cf00df746fd3a975f1
-ENV JENA_VERSION 3.9.0
+# Update below according to https://jena.apache.org/download/ 
+# and checksum for .tar.gz
+ENV JENA_SHA512 7dafe7aa28cb85a6da9f6f2b109372ec0d097d4f07d8cb5882dde814b55cdb60512ab9bc09c2593118aaf3fbbc1f65f1d3b921faca7bddefd3f6bf9d7f332998
+ENV JENA_VERSION 3.10.0
 # Tip: No need for https as we've coded the sha512 above
 ENV JENA_MIRROR http://www.eu.apache.org/dist/
 ENV JENA_ARCHIVE http://archive.apache.org/dist/
