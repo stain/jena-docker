@@ -21,8 +21,8 @@ MAINTAINER Stian Soiland-Reyes <stain@apache.org>
 
 # Update below according to https://jena.apache.org/download/ 
 # and checksum for .tar.gz
-ENV JENA_SHA512 7dafe7aa28cb85a6da9f6f2b109372ec0d097d4f07d8cb5882dde814b55cdb60512ab9bc09c2593118aaf3fbbc1f65f1d3b921faca7bddefd3f6bf9d7f332998
-ENV JENA_VERSION 3.10.0
+ENV JENA_SHA512 7598dfe5d7f367949eb4361fc7d160fc908b67a1e3307e78f368ef8d95510f88819416c26b503bc8257c170e4d6b46b79c0634f1ba830ed2fa9782611187198e
+ENV JENA_VERSION 3.11.0
 # Tip: No need for https as we've coded the sha512 above
 ENV JENA_MIRROR http://www.eu.apache.org/dist/
 ENV JENA_ARCHIVE http://archive.apache.org/dist/
