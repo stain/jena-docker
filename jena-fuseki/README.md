@@ -1,7 +1,7 @@
 # Jena Fuseki 2 docker image
 
 * Docker image: [stain/jena-fuseki](https://hub.docker.com/r/stain/jena-fuseki/)
-* Base images:  [java](https://hub.docker.com/r/_/java/):8-jre-alpine
+* Base images:  [openjdk](https://hub.docker.com/r/_/openjdk/):8-jre-alpine
 * Source: [Dockerfile](https://github.com/stain/jena-docker/blob/master/jena-fuseki/Dockerfile), [Apache Jena Fuseki](http://jena.apache.org/download/)
 
 [![Build Status](https://travis-ci.org/stain/jena-docker.svg)](https://travis-ci.org/stain/jena-docker)
