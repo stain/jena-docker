@@ -16,7 +16,7 @@
 #FROM alpine:3.4
 FROM openjdk:8-jre-alpine
 #RUN apk add --update --no-cache openjdk8-jre bash wget ca-certificates && rm -rf /var/cache/apk/*
-RUN apk add --update --no-cache bash wget ca-certificates && rm -rf /var/cache/apk/*
+RUN apk add --update --no-cache bash curl ca-certificates && rm -rf /var/cache/apk/*
 MAINTAINER Stian Soiland-Reyes <stain@apache.org>
 
 # Update below according to https://jena.apache.org/download/ 
@@ -24,16 +24,19 @@ MAINTAINER Stian Soiland-Reyes <stain@apache.org>
 ENV JENA_SHA512 7598dfe5d7f367949eb4361fc7d160fc908b67a1e3307e78f368ef8d95510f88819416c26b503bc8257c170e4d6b46b79c0634f1ba830ed2fa9782611187198e
 ENV JENA_VERSION 3.11.0
 # Tip: No need for https as we've coded the sha512 above
-ENV JENA_MIRROR http://www.eu.apache.org/dist/
-ENV JENA_ARCHIVE http://archive.apache.org/dist/
+ENV ASF_MIRROR_EU http://www.eu.apache.org/dist/
+ENV ASF_MIRROR_US http://www.us.apache.org/dist/
+ENV ASF_ARCHIVE http://archive.apache.org/dist/
 #
 
 WORKDIR /tmp
 # sha512 checksum
 RUN echo "$JENA_SHA512  jena.tar.gz" > jena.tar.gz.sha512
 # Download/check/unpack/move in one go (to reduce image size)
-RUN     wget -O jena.tar.gz $JENA_MIRROR/jena/binaries/apache-jena-$JENA_VERSION.tar.gz || \
-        wget -O jena.tar.gz $JENA_ARCHIVE/jena/binaries/apache-jena-$JENA_VERSION.tar.gz && \
+RUN     (curl --fail $ASF_MIRROR_EU/jena/binaries/apache-jena-$JENA_VERSION.tar.gz || \
+         curl --fail $ASF_MIRROR_US/jena/binaries/apache-jena-$JENA_VERSION.tar.gz || \
+         curl --fail $ASF_ARCHIVE/jena/binaries/apache-jena-$JENA_VERSION.tar.gz \
+        ) > jena.tar.gz && \
 	sha512sum -c jena.tar.gz.sha512 && \
 	tar zxf jena.tar.gz && \
 	mv apache-jena* /jena && \
