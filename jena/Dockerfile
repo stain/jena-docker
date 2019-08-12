@@ -33,9 +33,9 @@ WORKDIR /tmp
 # sha512 checksum
 RUN echo "$JENA_SHA512  jena.tar.gz" > jena.tar.gz.sha512
 # Download/check/unpack/move in one go (to reduce image size)
-RUN     (curl --fail $ASF_MIRROR_EU/jena/binaries/apache-jena-$JENA_VERSION.tar.gz || \
-         curl --fail $ASF_MIRROR_US/jena/binaries/apache-jena-$JENA_VERSION.tar.gz || \
-         curl --fail $ASF_ARCHIVE/jena/binaries/apache-jena-$JENA_VERSION.tar.gz \
+RUN     (curl -sS --fail $ASF_MIRROR_EU/jena/binaries/apache-jena-$JENA_VERSION.tar.gz || \
+         curl -sS --fail $ASF_MIRROR_US/jena/binaries/apache-jena-$JENA_VERSION.tar.gz || \
+         curl -sS --fail $ASF_ARCHIVE/jena/binaries/apache-jena-$JENA_VERSION.tar.gz \
         ) > jena.tar.gz && \
 	sha512sum -c jena.tar.gz.sha512 && \
 	tar zxf jena.tar.gz && \

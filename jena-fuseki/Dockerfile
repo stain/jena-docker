@@ -45,9 +45,9 @@ WORKDIR /tmp
 # sha512 checksum
 RUN echo "$FUSEKI_SHA512  fuseki.tar.gz" > fuseki.tar.gz.sha512
 # Download/check/unpack/move in one go (to reduce image size)
-RUN     (curl --fail $ASF_MIRROR_EU/jena/binaries/apache-jena-fuseki-$FUSEKI_VERSION.tar.gz || \
-         curl --fail $ASF_MIRROR_US/jena/binaries/apache-jena-fuseki-$FUSEKI_VERSION.tar.gz || \
-         curl --fail $ASF_ARCHIVE/jena/binaries/apache-jena-fuseki-$FUSEKI_VERSION.tar.gz \
+RUN     (curl -sS --fail $ASF_MIRROR_EU/jena/binaries/apache-jena-fuseki-$FUSEKI_VERSION.tar.gz || \
+         curl -sS --fail $ASF_MIRROR_US/jena/binaries/apache-jena-fuseki-$FUSEKI_VERSION.tar.gz || \
+         curl -sS --fail $ASF_ARCHIVE/jena/binaries/apache-jena-fuseki-$FUSEKI_VERSION.tar.gz \
         ) > fuseki.tar.gz && \
         sha512sum -c fuseki.tar.gz.sha512 && \
         tar zxf fuseki.tar.gz && \
@@ -55,6 +55,12 @@ RUN     (curl --fail $ASF_MIRROR_EU/jena/binaries/apache-jena-fuseki-$FUSEKI_VER
         rm fuseki.tar.gz* && \
         cd $FUSEKI_HOME && rm -rf fuseki.war
 
+# Test the install by testing it's ping resource
+RUN  /jena-fuseki/fuseki-server & \
+     sleep 4 && \
+     curl -sS --fail 'http://localhost:3030/$/ping' 
+
+# No need to kill Fuseki as our shell will exit
 
 # As "localhost" is often inaccessible within Docker container,
 # we'll enable basic-auth with a random admin password
