@@ -55,10 +55,12 @@ RUN     (curl -sS --fail $ASF_MIRROR_EU/jena/binaries/apache-jena-fuseki-$FUSEKI
         rm fuseki.tar.gz* && \
         cd $FUSEKI_HOME && rm -rf fuseki.war
 
-# Test the install by testing it's ping resource
-RUN  /jena-fuseki/fuseki-server & \
-     sleep 10 && \
-     curl -sS --fail 'http://localhost:3030/$/ping' 
+# Test the install with it's ping resource
+RUN apk add --no-cache tini
+RUN /jena-fuseki/fuseki-server & \
+    /sbin/tini timeout -t 30 /bin/sh -c " \
+    echo 'waiting...'; sleep 5; \
+    until curl -sS --fail 'http://localhost:3030/$/ping'; do echo 'waiting...'; sleep 5; done"
 
 # No need to kill Fuseki as our shell will exit
 
