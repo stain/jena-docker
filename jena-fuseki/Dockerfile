@@ -49,7 +49,7 @@ RUN     (wget -O fuseki.tar.gz ${ASF_MIRROR}jena/binaries/apache-jena-fuseki-$FU
         tar zxf fuseki.tar.gz && \
         mv apache-jena-fuseki* $FUSEKI_HOME && \
         rm fuseki.tar.gz* && \
-        cd $FUSEKI_HOME && rm -rf fuseki.war
+        cd $FUSEKI_HOME && rm -rf fuseki.war && chmod 755 fuseki-server
 
 # Test the install by testing it's ping resource. 20s sleep because Docker Hub.
 RUN  /jena-fuseki/fuseki-server & \
