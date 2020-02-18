@@ -28,7 +28,7 @@ MAINTAINER Stian Soiland-Reyes <stain@apache.org>
 ENV FUSEKI_SHA512 18018d262987673c2707e0f8daac407eb61dfc4a08015e19b72b1d682d1540eddf2507575b79a161b37f029da63a58d71ba7772c1b5b5fca80d845527a6f7a7a
 ENV FUSEKI_VERSION 3.11.0
 ENV ASF_MIRROR https://www.apache.org/dyn/mirrors/mirrors.cgi?action=download&filename=
-ENV ASF_ARCHIVE https://archive.apache.org/dist/
+ENV ASF_ARCHIVE https://archive.apache.org//dist/
 #
 
 # Config and data
@@ -53,7 +53,7 @@ RUN     (wget -O fuseki.tar.gz ${ASF_MIRROR}jena/binaries/apache-jena-fuseki-$FU
 
 # Test the install by testing it's ping resource
 RUN  /jena-fuseki/fuseki-server & \
-     sleep 4 && \
+     sleep 10 && \
      curl -sS --fail 'http://localhost:3030/$/ping' 
 
 # No need to kill Fuseki as our shell will exit
