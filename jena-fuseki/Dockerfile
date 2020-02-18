@@ -27,10 +27,8 @@ MAINTAINER Stian Soiland-Reyes <stain@apache.org>
 # corresponding *.tar.gz.sha512 from https://www.apache.org/dist/jena/binaries/
 ENV FUSEKI_SHA512 18018d262987673c2707e0f8daac407eb61dfc4a08015e19b72b1d682d1540eddf2507575b79a161b37f029da63a58d71ba7772c1b5b5fca80d845527a6f7a7a
 ENV FUSEKI_VERSION 3.11.0
-# Tip: No need for https as we've coded the sha512 above
-ENV ASF_MIRROR_EU http://www.eu.apache.org/dist/
-ENV ASF_MIRROR_US http://www.us.apache.org/dist/
-ENV ASF_ARCHIVE http://archive.apache.org/dist/
+ENV ASF_MIRROR https://www.apache.org/dyn/mirrors/mirrors.cgi?action=download&filename=
+ENV ASF_ARCHIVE https://archive.apache.org/dist/
 #
 
 # Config and data
@@ -45,10 +43,8 @@ WORKDIR /tmp
 # sha512 checksum
 RUN echo "$FUSEKI_SHA512  fuseki.tar.gz" > fuseki.tar.gz.sha512
 # Download/check/unpack/move in one go (to reduce image size)
-RUN     (curl -sS --fail $ASF_MIRROR_EU/jena/binaries/apache-jena-fuseki-$FUSEKI_VERSION.tar.gz || \
-         curl -sS --fail $ASF_MIRROR_US/jena/binaries/apache-jena-fuseki-$FUSEKI_VERSION.tar.gz || \
-         curl -sS --fail $ASF_ARCHIVE/jena/binaries/apache-jena-fuseki-$FUSEKI_VERSION.tar.gz \
-        ) > fuseki.tar.gz && \
+RUN     (wget -O fuseki.tar.gz ${ASF_MIRROR}jena/binaries/apache-jena-fuseki-$FUSEKI_VERSION.tar.gz || \
+         wget -O fuseki.tar.gz $ASF_ARCHIVE/jena/binaries/apache-jena-fuseki-$FUSEKI_VERSION.tar.gz) && \
         sha512sum -c fuseki.tar.gz.sha512 && \
         tar zxf fuseki.tar.gz && \
         mv apache-jena-fuseki* $FUSEKI_HOME && \
