@@ -21,8 +21,8 @@ MAINTAINER Stian Soiland-Reyes <stain@apache.org>
 
 # Update below according to https://jena.apache.org/download/ 
 # and checksum for apache-jena-3.x.x.tar.gz.sha512
-ENV JENA_SHA512 fe16552514c762a14ddcb507b657d044162ebab8e2cc6a13df441043c3d52e833823f505d24fe3c28893631ff2404a85847bd93cb929bdf55d944ba2c8b43ab7
-ENV JENA_VERSION 3.13.0
+ENV JENA_SHA512 0f77b94b12631bdc4ad337b8efbe47b47d349c82b9b36a532c8218866dca647c646a2a51d3fae8e82cd4aca3a6716808d0c3d80a6fbdc32884f13fb6f7536350
+ENV JENA_VERSION 3.13.1
 ENV ASF_MIRROR https://www.apache.org/dyn/mirrors/mirrors.cgi?action=download&filename=
 ENV ASF_ARCHIVE https://archive.apache.org/dist/
 #
