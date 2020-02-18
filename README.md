@@ -30,10 +30,8 @@ The `Dockerfile`s for both images use the official [openjdk:8-jre-alpine](https:
 the [alpine](https://hub.docker.com/_/alpine/) image; this clocks in at about [55 MB](https://microbadger.com/images/openjdk:8-jre-alpine)
 
 
-The `ENV` variables like `JENA_VERSION` and `FUSEKI_VERSION` determines which version of Jena and Fuseki are downloaded. Updating the version also requires updating the `JENA_SHA1` and `FUSEKI_SHA1` variables, which values
-should match the official Jena download `.tar.gz.sha1` hashes, as approved in their release `[VOTE]` emails.  
-
-Note that the [Jena download page](http://jena.apache.org/download/) do not link directly to the `sha` checksums, these can be found by modifying the `.md5` download links to a `sha1` extension, e.g. `https://www.apache.org/dist/jena/binaries/apache-jena-3.0.0.tar.gz.sha1` or `https://www.apache.org/dist/jena/binaries/apache-jena-fuseki-2.3.0.tar.gz.sha1`. Alternatively, browse https://www.apache.org/dist/jena/binaries/
+The `ENV` variables like `JENA_VERSION` and `FUSEKI_VERSION` determines which version of Jena and Fuseki are downloaded. Updating the version also requires updating the `JENA_SHA512` and `FUSEKI_SHA512` variables, which values
+should match the official Jena download `.tar.gz.sha512` hashes, as approved in their release `[VOTE]` emails.
 
 The `JENA_MIRROR` and `FUSEKI_MIRROR` should be http://www.eu.apache.org/dist/ or http://www.us.apache.org/dist/ - **not** http://www.apache.org/dist/ 
 
