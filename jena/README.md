@@ -1,13 +1,13 @@
 # Jena command line tools
 
 * Docker image: [stain/jena](https://hub.docker.com/r/stain/jena/)
-* Base images: [openjdk](https://hub.docker.com/r/_/openjdk/):8-jre-alpine
+* Base images: [openjdk](https://hub.docker.com/r/_/openjdk/):11-jre-slim-buster
 * Source: [Dockerfile](https://github.com/stain/jena-docker/blob/master/jena/Dockerfile), [Apache Jena](http://jena.apache.org/download/)
 
 
 [![Build Status](https://travis-ci.org/stain/jena-docker.svg)](https://travis-ci.org/stain/jena-docker)
 
-[![](https://images.microbadger.com/badges/image/stain/jena.svg)](https://microbadger.com/images/stain/jena "Get your own image badge on microbadger.com")
+[![](https://images.microbadger.com/badges/image/stain/jena.svg)](https://microbadger.com/images/stain/jena "stain/jena")
 
 [![](https://images.microbadger.com/badges/version/stain/jena:3.14.0.svg)](https://github.com/stain/jena-docker/tree/master/jena "Jena 3.14.0")
 
@@ -20,12 +20,14 @@ command line tools, like `rdfcompare`, `tdbloader` and `sparql`.
 
 Different licenses apply to files added by different Docker layers:
 
-* stain/jena [Dockerfile](https://github.com/stain/jena-docker): [Apache License, version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
-* Apache Jena (`/jena` in the image): [Apache License, version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
+* stain/jena [Dockerfile](https://github.com/stain/jena-docker/blob/master/jena/Dockerfile): [Apache License, version 2.0](https://www.apache.org/licenses/LICENSE-2.0)
+* Apache Jena (`/jena` in the image): [Apache License, version 2.0](https://www.apache.org/licenses/LICENSE-2.0)
   See also: `docker run stain/jena cat /jena/NOTICE`
-* OpenJDK (`/usr/lib/jvm/default-jvm/j` in the image): [GPL 2.0 with Classpath exception](http://openjdk.java.net/legal/gplv2+ce.html)
-  See also: `docker run stain/jena cat /usr/lib/jvm/default-jvm/jre/LICENSE`
-* Alpine Linux (rest of `/`): Unknown ([GPL 3?](http://www.gnu.org/licenses/gpl-3.0))
+* OpenJDK (`/usr/local/openjdk-11/` in the image): [GPL 2.0 with Classpath exception](https://openjdk.java.net/legal/gplv2+ce.html)
+  See `/usr/local/openjdk-11/legal/` in image
+* Debian GNU/Linux (rest of `/`): ([GPL 3](http://www.gnu.org/licenses/gpl-3.0) and [compatible licenses](https://www.debian.org/legal/licenses/), see `/usr/share/*/license` in image)
+
+
 
 ## Usage
 
@@ -82,8 +84,8 @@ To executable multiple `riot` commands within a Docker container:
     docker run -it stain/jena sh
 
 Note that this image is based on a minimal
-[Alpine Linux](http://alpinelinux.org/) installation. You can use
-the `apk` command to install additional tools.
+[Debian GNU/Linux](https://www.debian.org/) installation. You can use
+the `apt` command to install additional tools.
 
 
 ## Other command line tools
@@ -175,7 +177,9 @@ mailing list.
 For any issues with Jena or `riot`, feel free to
 [raise a bug](https://jena.apache.org/help_and_support/bugs_and_suggestions.html).
 
-For any issues with this Docker image
-and its [Dockerfile](https://github.com/stain/jena-docker/),
+
+For any issues with the packaging in this Docker image, or
+its [Dockerfile](https://github.com/stain/jena-docker/),
 please raise a [pull request](https://github.com/stain/jena-docker/pulls) or
 [issue](https://github.com/stain/jena-docker/issues).
+

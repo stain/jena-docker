@@ -26,8 +26,7 @@ docker build -t jena-fuseki jena-fuseki
  
 ## Dockerfile overview
 
-The `Dockerfile`s for both images use the official [openjdk:8-jre-alpine](https://hub.docker.com/r/_/openjdk/) base image, which is based on 
-the [alpine](https://hub.docker.com/_/alpine/) image; this clocks in at about [55 MB](https://microbadger.com/images/openjdk:8-jre-alpine)
+The `Dockerfile`s for both images use the official [openjdk:11-jre-slim-buster](https://hub.docker.com/r/_/openjdk/) base image, which is [based on](https://github.com/docker-library/openjdk/blob/master/11/jre/slim/Dockerfile) the `[debian](https://hub.docker.com/_/debian/):buster-slim` image; this clocks in at about [55 MB](https://microbadger.com/images/openjdk:8-jre-alpine)
 
 
 The `ENV` variables like `JENA_VERSION` and `FUSEKI_VERSION` determines which version of Jena and Fuseki are downloaded. Updating the version also requires updating the `JENA_SHA512` and `FUSEKI_SHA512` variables, which values
