@@ -35,7 +35,16 @@ ENV JENA_VERSION 3.14.0
 # No need for https due to sha512 checksums below
 ENV ASF_MIRROR http://www.apache.org/dyn/mirrors/mirrors.cgi?action=download&filename=
 ENV ASF_ARCHIVE http://archive.apache.org/dist/
-#
+
+LABEL org.opencontainers.image.url https://github.com/stain/jena-docker/tree/master/jena
+LABEL org.opencontainers.image.source https://github.com/stain/jena-docker/
+LABEL org.opencontainers.image.documentation https://jena.apache.org/documentation/tools/
+LABEL org.opencontainers.image.title "Apache Jena"
+LABEL org.opencontainers.image.description "Jena riot is a command line tool for parsing and validating multiple RDF formats"
+LABEL org.opencontainers.image.version ${FUSEKI_VERSION}
+LABEL org.opencontainers.image.licenses "(Apache-2.0 AND (GPL-2.0 WITH Classpath-exception-2.0) AND GPL-3.0)"
+LABEL org.opencontainers.image.authors "Apache Jena by https://jena.apache.org/; this image by https://orcid.org/0000-0001-9842-9718"
+
 
 WORKDIR /tmp
 # sha512 checksum

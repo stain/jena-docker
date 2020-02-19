@@ -25,7 +25,7 @@ Different licenses apply to files added by different Docker layers:
   See also: `docker run stain/jena cat /jena/NOTICE`
 * OpenJDK (`/usr/local/openjdk-11/` in the image): [GPL 2.0 with Classpath exception](https://openjdk.java.net/legal/gplv2+ce.html)
   See `/usr/local/openjdk-11/legal/` in image
-* Debian GNU/Linux (rest of `/`): ([GPL 3](http://www.gnu.org/licenses/gpl-3.0) and [compatible licenses](https://www.debian.org/legal/licenses/), see `/usr/share/*/license` in image)
+* Debian GNU/Linux (rest of `/`): [GPL 3](http://www.gnu.org/licenses/gpl-3.0) and [compatible licenses](https://www.debian.org/legal/licenses/), see `/usr/share/*/license` in image
 
 
 
