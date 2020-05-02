@@ -117,7 +117,7 @@ volume `fuseki-data` as recommended above, do:
 
 You can create empty datasets at startup with:
 
-    docker run -d --name fuseki -p 3030:3030 -e FUSEKI_DATASET1=mydataset -e FUSEKI_DATASET_2=otherdataset stain/jena-fuseki
+    docker run -d --name fuseki -p 3030:3030 -e FUSEKI_DATASET_1=mydataset -e FUSEKI_DATASET_2=otherdataset stain/jena-fuseki
 
 This will create 2 empty datasets: mydataset and otherdataset.
 
