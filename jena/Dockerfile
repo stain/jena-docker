@@ -22,13 +22,13 @@ ENV LANG C.UTF-8
 RUN set -eux; \
     apt-get update; \
     apt-get install -y --no-install-recommends \
-       bash curl ca-certificates findutils coreutils \
+       bash curl ca-certificates findutils coreutils procps \
     ; \
     rm -rf /var/lib/apt/lists/*
 
 
 
-# Update below according to https://jena.apache.org/download/ 
+# Update below according to https://jena.apache.org/download/
 # and checksum for apache-jena-3.x.x.tar.gz.sha512
 ENV JENA_SHA512 ba2e966df3ff2c8727b02f95771aa9f9953687fadbd51a95fff3709bb342ca64c1ac54bc25c9e24432b038c14737979c48fad5885e5841d6c15cc4967859b037
 ENV JENA_VERSION 3.14.0
