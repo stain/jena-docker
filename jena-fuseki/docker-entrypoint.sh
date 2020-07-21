@@ -39,6 +39,13 @@ fi
 
 exec "$@" &
 
+TDB=''
+if [ -z ${TDB+x} ] && [ "${TDB}" = "2" ] ; then 
+  TDB='tdb2'
+else
+  TDB='tdb'
+fi
+
 # Wait until server is up
 while [[ $(curl -I http://localhost:3030 2>/dev/null | head -n 1 | cut -d$' ' -f2) != '200' ]]; do
   sleep 1s
@@ -51,7 +58,7 @@ do
     curl -s 'http://localhost:3030/$/datasets'\
          -H "Authorization: Basic $(echo -n admin:${ADMIN_PASSWORD} | base64)" \
          -H 'Content-Type: application/x-www-form-urlencoded; charset=UTF-8'\
-         --data "dbName=${dataset}&dbType=tdb"
+         --data "dbName=${dataset}&dbType=${TDB}"
 done
 
 wait
