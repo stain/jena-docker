@@ -39,11 +39,11 @@ fi
 
 exec "$@" &
 
-TDB=''
-if [ -z ${TDB+x} ] && [ "${TDB}" = "2" ] ; then 
-  TDB='tdb2'
+TDB_VERSION=''
+if [ ! -z ${TDB+x} ] && [ "${TDB}" = "2" ] ; then 
+  TDB_VERSION='tdb2'
 else
-  TDB='tdb'
+  TDB_VERSION='tdb'
 fi
 
 # Wait until server is up
@@ -58,7 +58,7 @@ do
     curl -s 'http://localhost:3030/$/datasets'\
          -H "Authorization: Basic $(echo -n admin:${ADMIN_PASSWORD} | base64)" \
          -H 'Content-Type: application/x-www-form-urlencoded; charset=UTF-8'\
-         --data "dbName=${dataset}&dbType=${TDB}"
+         --data "dbName=${dataset}&dbType=${TDB_VERSION}"
 done
 
 wait
