@@ -103,6 +103,15 @@ To restart a named container (it will remember the volume and port config)
 
     docker restart fuseki
 
+### Using TDB 2
+
+To use [TDB v2](https://jena.apache.org/documentation/tdb2/) you can pass the environment variable with `-e TDB=2`
+
+     docker run -p 3030:3030 -e TDB=2 stain/jena-fuseki
+
+If you do so, then you need to use the appropriate `tdbloader2` for your data, see below for more details.
+
+
 ## Upgrading Fuseki
 
 If you want to upgrade the Fuseki container named `fuseki` which use the data
@@ -171,6 +180,15 @@ graphs, see the `tdbloader` section below.
 admin password will be set before you have started Fuseki.
 You can either check the output of the data loading, or later override the
 password using `-e ADMIN_PASSWORD=pw123`.
+
+
+### Using the `tdbloader2` for TDB2
+
+Assume you have already the container running named `fuseki` you can execute
+
+    docker exec -it fuseki  /bin/bash -c 'tdbloader2 --loc chembl19  /staging/{cco.ttl.gz,void.ttl.gz}'
+
+
 
 
 ## Recognizing the dataset in Fuseki
