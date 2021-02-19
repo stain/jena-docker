@@ -22,7 +22,7 @@ ENV LANG C.UTF-8
 RUN set -eux; \
     apt-get update; \
     apt-get install -y --no-install-recommends \
-       bash curl ca-certificates findutils coreutils \
+       bash curl ca-certificates findutils coreutils procps \
     ; \
     rm -rf /var/lib/apt/lists/*
 
