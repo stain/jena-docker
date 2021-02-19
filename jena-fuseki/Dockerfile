@@ -80,7 +80,8 @@ RUN chmod 755 /docker-entrypoint.sh
 
 COPY load.sh $FUSEKI_HOME/
 COPY tdbloader $FUSEKI_HOME/
-RUN chmod 755 $FUSEKI_HOME/load.sh $FUSEKI_HOME/tdbloader
+COPY tdbloader2 $FUSEKI_HOME/
+RUN chmod 755 $FUSEKI_HOME/load.sh $FUSEKI_HOME/tdbloader $FUSEKI_HOME/tdbloader2
 #VOLUME /staging
 
 
