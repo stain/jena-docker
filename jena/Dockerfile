@@ -30,8 +30,8 @@ RUN set -eux; \
 
 # Update below according to https://jena.apache.org/download/ 
 # and checksum for apache-jena-3.x.x.tar.gz.sha512
-ENV JENA_SHA512 ba2e966df3ff2c8727b02f95771aa9f9953687fadbd51a95fff3709bb342ca64c1ac54bc25c9e24432b038c14737979c48fad5885e5841d6c15cc4967859b037
-ENV JENA_VERSION 3.14.0
+ENV JENA_SHA512 321c763fa3b3532fa06bb146363722e58e10289194f622f2e29117b610521e62e7ea51b9d06cd366570ed143f2ebbeded22e5302d2375b49da253b7ddef86d34
+ENV JENA_VERSION 3.17.0
 # No need for https due to sha512 checksums below
 ENV ASF_MIRROR http://www.apache.org/dyn/mirrors/mirrors.cgi?action=download&filename=
 ENV ASF_ARCHIVE http://archive.apache.org/dist/
