@@ -32,6 +32,6 @@ script:
   - docker run --name fuseki -p 127.0.0.1:3030:3030 -d jena-fuseki
   - sleep 8
   - docker logs fuseki
-  - docker logs fuseki | grep --quiet ^admin=
-  - docker logs fuseki | grep --quiet Started
+  - docker logs fuseki 2>&1 | grep --quiet ^admin=
+  - docker logs fuseki 2>&1 | grep --quiet Started
   - curl http://127.0.0.1:3030/ | grep --quiet Fuseki
