@@ -31,7 +31,8 @@ script:
   - sudo service docker restart ; sleep 10 # workaround for https://github.com/travis-ci/travis-ci/issues/4778
   - docker run --name fuseki -p 127.0.0.1:3030:3030 -d jena-fuseki
   - sleep 8
+  - curl --silent --output /dev/null  --show-error -L --max-redirs 3 --retry 3 --retry-delay 4 --max-time 30 http://127.0.0.1:3030/
   - docker logs fuseki
-  - docker logs fuseki | grep --quiet ^admin=
-  - docker logs fuseki | grep --quiet Started
+  - docker logs fuseki 2>&1 | grep --quiet ^admin=
+  - docker logs fuseki 2>&1 | grep --quiet Started
   - curl http://127.0.0.1:3030/ | grep --quiet Fuseki
