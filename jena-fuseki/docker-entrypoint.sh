@@ -36,11 +36,16 @@ if [ -d "/fuseki-extra" ] && [ ! -d "$FUSEKI_BASE/extra" ] ; then
   ln -s "/fuseki-extra" "$FUSEKI_BASE/extra" 
 fi
 
-# $ADMIN_PASSWORD can always override
+# $ADMIN_PASSWORD only modifies if ${ADMIN_PASSWORD}
+# is in shiro.ini
 if [ -n "$ADMIN_PASSWORD" ] ; then
-  sed -i "s/^admin=.*/admin=$ADMIN_PASSWORD/" "$FUSEKI_BASE/shiro.ini"
+  envsubst "$FUSEKI_BASE/shiro.ini" > "$FUSEKI_BASE/shiro.ini.$$" && \
+    mv "$FUSEKI_BASE/shiro.ini.$$" "$FUSEKI_BASE/shiro.ini"
+  unset ADMIN_PASSWORD # Don't keep it in memory
+  export ADMIN_PASSWORD
 fi
 
+# fork 
 exec "$@" &
 
 TDB_VERSION=''
@@ -65,4 +70,5 @@ do
          --data "dbName=${dataset}&dbType=${TDB_VERSION}"
 done
 
+# rejoin our exec
 wait
