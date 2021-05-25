@@ -168,6 +168,20 @@ sparql --data=<file> --query=<query>
 
 Note that you will need to use `docker run --volume` to make local files accessible to these commands.
 
+## GitHub Action
+
+@vemonet has made a GitHub Action [vemonet/jena-riot-action](https://github.com/marketplace/actions/validate-rdf-with-jena)
+which can be used to validate or convert RDF files on commits to GitHub:
+
+```yaml
+- uses: vemonet/jena-riot-action@v3.14
+  with:
+    input: my_file.ttl
+    convert: --output=NQUADS
+```
+
+See <https://github.com/vemonet/jena-riot-action> for details.
+
 ## Contact
 
 For any feedback on Jena, `riot` and this Docker image, please use
