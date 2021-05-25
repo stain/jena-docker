@@ -5,7 +5,7 @@
 * Source: [Dockerfile](https://github.com/stain/jena-docker/blob/master/jena/Dockerfile), [Apache Jena](http://jena.apache.org/download/)
 
 
-[![Build Status](https://travis-ci.org/stain/jena-docker.svg)](https://travis-ci.org/stain/jena-docker)
+[![Build Status](https://travis-ci.com/stain/jena-docker.svg)](https://travis-ci.com/stain/jena-docker)
 
 [![](https://images.microbadger.com/badges/image/stain/jena.svg)](https://microbadger.com/images/stain/jena "stain/jena")
 
