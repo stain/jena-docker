@@ -21,7 +21,7 @@ ENV LANG C.UTF-8
 RUN set -eux; \
     apt-get update; \
     apt-get install -y --no-install-recommends \
-       bash curl ca-certificates findutils coreutils pwgen procps tini \
+       bash curl ca-certificates findutils coreutils gettext pwgen procps tini \
     ; \
     rm -rf /var/lib/apt/lists/*
 
