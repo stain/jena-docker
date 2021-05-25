@@ -30,6 +30,9 @@ if [ $# -eq 0 ] ; then
   echo ""
   echo "If no PATTERN are given, the default patterns are searched:"
   echo "$PATTERNS"
+  echo ""
+  echo "Set the environment variable TDBLOADER_OPTS for any additional"
+  echo "options to pass to tdbloader, e.g. --graph=https://example.org/graph#name
   exit 0
 fi
 
@@ -69,4 +72,4 @@ echo ""
 echo $files
 echo "#########"
 
-exec $FUSEKI_HOME/tdbloader --loc=$FUSEKI_BASE/databases/$DB $files
+exec $FUSEKI_HOME/tdbloader $TDBLOADER_OPTS --loc=$FUSEKI_BASE/databases/$DB $files
