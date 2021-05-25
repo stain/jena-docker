@@ -32,6 +32,10 @@ if [ ! -f "$FUSEKI_BASE/shiro.ini" ] ; then
   echo "###################################"
 fi
 
+if [ -d "/fuseki-extra" ] && [ ! -d "$FUSEKI_BASE/extra" ] ; then
+  ln -s "/fuseki-extra" "$FUSEKI_BASE/extra" 
+fi
+
 # $ADMIN_PASSWORD can always override
 if [ -n "$ADMIN_PASSWORD" ] ; then
   sed -i "s/^admin=.*/admin=$ADMIN_PASSWORD/" "$FUSEKI_BASE/shiro.ini"

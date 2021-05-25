@@ -238,6 +238,14 @@ and inspect `/fuseki` with the shell. Remember to restart fuseki afterwards:
 
     docker restart fuseki
 
+
+### Additional JARs on Fuseki classpath
+
+If you need to add additional JARs to the classpath, but do not want to 
+modify the volume `/fuseki`, then add the JARs to
+`/fuseki-extra` which will be added as `/fuseki/extra` on start.
+
+
 ## Contact
 
 For any feedback or questions on Jena, Fuseki or SPARQ, please use the
