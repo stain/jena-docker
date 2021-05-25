@@ -6,7 +6,7 @@ This repository hosts [Docker](https://www.docker.com/) recipes for distributing
 Two Docker images are available:
 
  - [jena](jena/) - `riot` command line and friends, for use on the command line
- - [fuseki](fuseki/) - the [Fuseki 2](http://jena.apache.org/documentation/fuseki2/) server with SPARQL endpoint and web interface
+ - [fuseki](fuseki/) - the [Fuseki](http://jena.apache.org/documentation/fuseki2/) server with SPARQL endpoint and web interface
  
 These are currently available from the Docker Hub as:
 
