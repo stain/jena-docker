@@ -37,3 +37,6 @@ script:
   - docker logs fuseki 2>&1 | grep --quiet Started
   - curl http://127.0.0.1:3030/ | grep --quiet Fuseki
   - docker kill --signal=SIGINT `docker ps -q`
+  - sleep 4
+  - docker ps
+  - test -z "`docker ps -q`" || exit 1
