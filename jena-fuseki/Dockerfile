@@ -21,7 +21,7 @@ ENV LANG C.UTF-8
 RUN set -eux; \
     apt-get update; \
     apt-get install -y --no-install-recommends \
-       bash curl ca-certificates findutils coreutils pwgen procps \
+       bash curl ca-certificates findutils coreutils pwgen procps tini \
     ; \
     rm -rf /var/lib/apt/lists/*
 
@@ -88,6 +88,6 @@ RUN chmod 755 $FUSEKI_HOME/load.sh $FUSEKI_HOME/tdbloader $FUSEKI_HOME/tdbloader
 # Where we start our server from
 WORKDIR $FUSEKI_HOME
 EXPOSE 3030
-ENTRYPOINT ["/docker-entrypoint.sh"]
+ENTRYPOINT ["/usr/bin/tini", "--", "/docker-entrypoint.sh"]
 CMD ["/jena-fuseki/fuseki-server"]
 
