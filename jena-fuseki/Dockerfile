@@ -44,7 +44,6 @@ LABEL org.opencontainers.image.licenses "(Apache-2.0 AND (GPL-2.0 WITH Classpath
 LABEL org.opencontainers.image.authors "Apache Jena Fuseki by https://jena.apache.org/; this image by https://orcid.org/0000-0001-9842-9718"
 
 # Config and data
-VOLUME /fuseki
 ENV FUSEKI_BASE /fuseki
 
 
@@ -87,6 +86,11 @@ RUN chmod 755 $FUSEKI_HOME/load.sh $FUSEKI_HOME/tdbloader $FUSEKI_HOME/tdbloader
 
 # Where we start our server from
 WORKDIR $FUSEKI_HOME
+
+# Make sure we start with empty /fuseki
+RUN rm -rf $FUSEKI_BASE
+VOLUME $FUSEKI_BASE
+
 EXPOSE 3030
 ENTRYPOINT ["/usr/bin/tini", "--", "/docker-entrypoint.sh"]
 CMD ["/jena-fuseki/fuseki-server"]

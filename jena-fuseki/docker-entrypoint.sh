@@ -39,7 +39,8 @@ fi
 # $ADMIN_PASSWORD only modifies if ${ADMIN_PASSWORD}
 # is in shiro.ini
 if [ -n "$ADMIN_PASSWORD" ] ; then
-  envsubst "$FUSEKI_BASE/shiro.ini" > "$FUSEKI_BASE/shiro.ini.$$" && \
+  export ADMIN_PASSWORD
+  envsubst '${ADMIN_PASSWORD}' < "$FUSEKI_BASE/shiro.ini" > "$FUSEKI_BASE/shiro.ini.$$" && \
     mv "$FUSEKI_BASE/shiro.ini.$$" "$FUSEKI_BASE/shiro.ini"
   unset ADMIN_PASSWORD # Don't keep it in memory
   export ADMIN_PASSWORD
