@@ -1,0 +1,50 @@
+#   Licensed to the Apache Software Foundation (ASF) under one or more
+#   contributor license agreements.  See the NOTICE file distributed with
+#   this work for additional information regarding copyright ownership.
+#   The ASF licenses this file to You under the Apache License, Version 2.0
+#   (the "License"); you may not use this file except in compliance with
+#   the License.  You may obtain a copy of the License at
+#
+#       http://www.apache.org/licenses/LICENSE-2.0
+#
+#   Unless required by applicable law or agreed to in writing, software
+#   distributed under the License is distributed on an "AS IS" BASIS,
+#   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#   See the License for the specific language governing permissions and
+#   limitations under the License.
+---
+name: Build
+
+on:
+  - push
+  - pull_request
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    if: "!contains(github.event.head_commit.message, 'ci skip')"
+    steps:
+      - name: Check out source code
+        uses: actions/checkout@v2
+      - name: Build images
+        run: |
+          docker build -t jena jena
+          docker build -t jena-fuseki jena-fuseki
+      - name: Test images
+        run: |
+          docker run jena riot --version  # Does it run at all?
+          echo "<http://example.com/a> <http://example.com/b> <http://example.com/c> ." > /tmp/example.ttl
+          docker run --volume /tmp:/rdf jena riot example.ttl > /tmp/example.nq
+          grep --quiet example.com /tmp/example.nq
+          sudo service docker restart ; sleep 10 # workaround for https://github.com/travis-ci/travis-ci/issues/4778
+          docker run --name fuseki -p 127.0.0.1:3030:3030 -d jena-fuseki
+          sleep 8
+          curl --silent --output /dev/null  --show-error -L --max-redirs 3 --retry 3 --retry-delay 4 --max-time 30 http://127.0.0.1:3030/
+          docker logs fuseki
+          docker logs fuseki 2>&1 | grep --quiet ^admin=
+          docker logs fuseki 2>&1 | grep --quiet Started
+          curl http://127.0.0.1:3030/ | grep --quiet Fuseki
+          docker kill --signal=SIGINT `docker ps -q`
+          sleep 4
+          docker ps
+          test -z "`docker ps -q`" || exit 1
