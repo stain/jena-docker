@@ -238,8 +238,7 @@ and inspect `/fuseki` with the shell. Remember to restart fuseki afterwards:
 
     docker restart fuseki
 
-
-### Additional JARs on Fuseki classpath
+### Additional JARs on Fuseki classpath
 
 If you need to add additional JARs to the classpath, but do not want to 
 modify the volume `/fuseki`, then add the JARs to
