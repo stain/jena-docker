@@ -248,7 +248,7 @@ modify the volume `/fuseki`, then add the JARs to
 
 ## Contact
 
-For any feedback or questions on Jena, Fuseki or SPARQ, please use the
+For any feedback or questions on Jena, Fuseki or SPARQL, please use the
 [users@jena](https://jena.apache.org/help_and_support/) mailing list.
 
 
