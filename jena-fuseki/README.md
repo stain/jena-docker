@@ -4,7 +4,7 @@
 * Base images:  [openjdk](https://hub.docker.com/r/_/openjdk/):11-jre-slim-buster
 * Source: [Dockerfile](https://github.com/stain/jena-docker/blob/master/jena-fuseki/Dockerfile), [Apache Jena Fuseki](https://jena.apache.org/download/)
 
-[![Build Status](https://travis-ci.com/stain/jena-docker.svg)](https://travis-ci.com/stain/jena-docker)
+[![Build](https://github.com/stain/jena-docker/actions/workflows/main.yml/badge.svg)](https://github.com/stain/jena-docker/actions/workflows/main.yml)
 
 [![](https://images.microbadger.com/badges/image/stain/jena-fuseki.svg)](https://microbadger.com/images/stain/jena-fuseki "stain/jena-fuseki")
 
