@@ -42,7 +42,6 @@ if [ -n "$ADMIN_PASSWORD" ] ; then
   export ADMIN_PASSWORD
   envsubst '${ADMIN_PASSWORD}' < "$FUSEKI_BASE/shiro.ini" > "$FUSEKI_BASE/shiro.ini.$$" && \
     mv "$FUSEKI_BASE/shiro.ini.$$" "$FUSEKI_BASE/shiro.ini"
-  unset ADMIN_PASSWORD # Don't keep it in memory
   export ADMIN_PASSWORD
 fi
 
@@ -66,7 +65,7 @@ printenv | egrep "^FUSEKI_DATASET_" | while read env_var
 do
     dataset=$(echo $env_var | egrep -o "=.*$" | sed 's/^=//g')
     curl -s 'http://localhost:3030/$/datasets'\
-         -H "Authorization: Basic $(echo -n admin:${ADMIN_PASSWORD} | base64)" \
+         -u admin:${ADMIN_PASSWORD}\
          -H 'Content-Type: application/x-www-form-urlencoded; charset=UTF-8'\
          --data "dbName=${dataset}&dbType=${TDB_VERSION}"
 done
