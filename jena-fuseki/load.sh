@@ -32,7 +32,7 @@ if [ $# -eq 0 ] ; then
   echo "$PATTERNS"
   echo ""
   echo "Set the environment variable TDBLOADER_OPTS for any additional"
-  echo "options to pass to tdbloader, e.g. --graph=https://example.org/graph#name
+  echo "options to pass to tdbloader, e.g. --graph=https://example.org/graph#name"
   exit 0
 fi
 
