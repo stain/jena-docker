@@ -86,12 +86,15 @@ RUN chmod 755 $FUSEKI_HOME/load.sh $FUSEKI_HOME/tdbloader $FUSEKI_HOME/tdbloader
 
 # Where we start our server from
 WORKDIR $FUSEKI_HOME
+RUN chown -R 10001:0 $FUSEKI_HOME && chmod -R og+rwx $FUSEKI_HOME
 
 # Make sure we start with empty /fuseki
 RUN rm -rf $FUSEKI_BASE
 VOLUME $FUSEKI_BASE
 
 EXPOSE 3030
-ENTRYPOINT ["/usr/bin/tini", "--", "/docker-entrypoint.sh"]
+USER 10001
+
+ENTRYPOINT ["/usr/bin/tini", "--", "sh", "/docker-entrypoint.sh"]
 CMD ["/jena-fuseki/fuseki-server"]
 
