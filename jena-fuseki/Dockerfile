@@ -21,15 +21,15 @@ ENV LANG C.UTF-8
 RUN set -eux; \
     apt-get update; \
     apt-get install -y --no-install-recommends \
-       bash curl ca-certificates findutils coreutils gettext pwgen procps tini \
+    bash curl ca-certificates findutils coreutils gettext pwgen procps tini \
     ; \
     rm -rf /var/lib/apt/lists/*
 
 
 # Update below according to https://jena.apache.org/download/ 
 # and checksum for apache-jena-fuseki-4.x.x.tar.gz.sha512
-ENV FUSEKI_SHA512 21850b9d106d40962cb8358cf5731509ed9f38be7f47a0fc7e2fa22247d89faf7b4ef3ecb58cac590b7592b3b8340b80214ab7ca67b9d1231acb68df62b8bd3d
-ENV FUSEKI_VERSION 4.4.0
+ENV FUSEKI_SHA512 9646343a23c2563357207f559cb7437aa91b52d02b87e70d77b746b609e93ed0ad9dce06e072f864d53422946f24aa8ee60d9c594c1f82e8f2ab226eba56e474
+ENV FUSEKI_VERSION 4.7.0
 # No need for https due to sha512 checksums below
 ENV ASF_MIRROR http://www.apache.org/dyn/mirrors/mirrors.cgi?action=download&filename=
 ENV ASF_ARCHIVE http://archive.apache.org/dist/
@@ -55,17 +55,17 @@ WORKDIR /tmp
 RUN echo "$FUSEKI_SHA512  fuseki.tar.gz" > fuseki.tar.gz.sha512
 # Download/check/unpack/move in one go (to reduce image size)
 RUN     (curl --location --silent --show-error --fail --retry-connrefused --retry 3 --output fuseki.tar.gz ${ASF_MIRROR}jena/binaries/apache-jena-fuseki-$FUSEKI_VERSION.tar.gz || \
-         curl --fail --silent --show-error --retry-connrefused --retry 3 --output fuseki.tar.gz $ASF_ARCHIVE/jena/binaries/apache-jena-fuseki-$FUSEKI_VERSION.tar.gz) && \
-        sha512sum -c fuseki.tar.gz.sha512 && \
-        tar zxf fuseki.tar.gz && \
-        mv apache-jena-fuseki* $FUSEKI_HOME && \
-        rm fuseki.tar.gz* && \
-        cd $FUSEKI_HOME && rm -rf fuseki.war && chmod 755 fuseki-server
+    curl --fail --silent --show-error --retry-connrefused --retry 3 --output fuseki.tar.gz $ASF_ARCHIVE/jena/binaries/apache-jena-fuseki-$FUSEKI_VERSION.tar.gz) && \
+    sha512sum -c fuseki.tar.gz.sha512 && \
+    tar zxf fuseki.tar.gz && \
+    mv apache-jena-fuseki* $FUSEKI_HOME && \
+    rm fuseki.tar.gz* && \
+    cd $FUSEKI_HOME && rm -rf fuseki.war && chmod 755 fuseki-server
 
 # Test the install by testing it's ping resource. 20s sleep because Docker Hub.
 RUN  $FUSEKI_HOME/fuseki-server & \
-     sleep 20 && \
-     curl -sS --fail 'http://localhost:3030/$/ping' 
+    sleep 20 && \
+    curl -sS --fail 'http://localhost:3030/$/ping' 
 
 # No need to kill Fuseki as our shell will exit after curl
 
