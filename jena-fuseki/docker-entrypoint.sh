@@ -56,7 +56,8 @@ else
 fi
 
 # Wait until server is up
-while [[ $(curl -I http://localhost:3030 2>/dev/null | head -n 1 | cut -d$' ' -f2) != '200' ]]; do
+echo "Waiting for Fuseki to finish starting up..."
+until $(curl --output /dev/null --silent --head --fail http://localhost:3030); do
   sleep 1s
 done
 
@@ -70,7 +71,7 @@ do
          -H 'Content-Type: application/x-www-form-urlencoded; charset=UTF-8'\
          --data "dbName=${dataset}&dbType=${TDB_VERSION}"
 done
-echo "Launching Fuseki..."
+echo "Fuseki is available :-)"
 unset ADMIN_PASSWORD # Don't keep it in memory
 
 # rejoin our exec
