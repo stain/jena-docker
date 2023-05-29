@@ -13,18 +13,16 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 
-FROM openjdk:11-jre-slim-buster
+FROM eclipse-temurin:17-jre-alpine
 
 MAINTAINER Stian Soiland-Reyes <stain@apache.org>
 
 ENV LANG C.UTF-8
 
 RUN set -eux; \
-    apt-get update; \
-    apt-get install -y --no-install-recommends \
-       bash curl ca-certificates findutils coreutils procps \
-    ; \
-    rm -rf /var/lib/apt/lists/*
+    apk -U upgrade; \
+    apk add bash curl ca-certificates findutils coreutils procps; \
+    rm -rf /var/cache/apk/*
 
 
 

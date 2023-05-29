@@ -14,16 +14,14 @@
 #   limitations under the License.
 
 
-FROM openjdk:11-jre-slim-buster
+FROM eclipse-temurin:17-jre-alpine
 MAINTAINER Stian Soiland-Reyes <stain@apache.org>
 
 ENV LANG C.UTF-8
 RUN set -eux; \
-    apt-get update; \
-    apt-get install -y --no-install-recommends \
-    bash curl ca-certificates findutils coreutils gettext pwgen procps tini \
-    ; \
-    rm -rf /var/lib/apt/lists/*
+    apk -U upgrade; \
+    apk add bash curl ca-certificates findutils coreutils gettext pwgen procps tini; \
+    rm -rf /var/cache/apk/*
 
 
 # Update below according to https://jena.apache.org/download/ 
@@ -99,6 +97,6 @@ VOLUME $FUSEKI_BASE
 EXPOSE 3030
 USER fuseki
 
-ENTRYPOINT ["/usr/bin/tini", "--", "sh", "/docker-entrypoint.sh"]
+ENTRYPOINT ["/sbin/tini", "--", "sh", "/docker-entrypoint.sh"]
 CMD ["/jena-fuseki/fuseki-server"]
 
