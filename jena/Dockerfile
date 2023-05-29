@@ -32,9 +32,8 @@ RUN set -eux; \
 # and checksum for apache-jena-4.x.x.tar.gz.sha512
 ENV JENA_SHA512 d6b8d271c612a53f4683eb9b2f76c213452fdc38eef7b5d56100cd2c0f4c3153d07757120b08a27dd5a8fd27b51bd573273be713befaa205edfa2957ec82b5e5
 ENV JENA_VERSION 4.8.0
-# No need for https due to sha512 checksums below
-ENV ASF_MIRROR http://www.apache.org/dyn/mirrors/mirrors.cgi?action=download&filename=
-ENV ASF_ARCHIVE http://archive.apache.org/dist/
+ENV ASF_MIRROR https://www.apache.org/dyn/mirrors/mirrors.cgi?action=download&filename=
+ENV ASF_ARCHIVE https://archive.apache.org/dist/
 
 LABEL org.opencontainers.image.url https://github.com/stain/jena-docker/tree/master/jena
 LABEL org.opencontainers.image.source https://github.com/stain/jena-docker/

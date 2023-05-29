@@ -30,9 +30,8 @@ RUN set -eux; \
 # and checksum for apache-jena-fuseki-4.x.x.tar.gz.sha512
 ENV FUSEKI_SHA512 78074d87d4c022ef7e89b8394d2b14ead447a9201d52795d8c9adab0e03341cffc883abb849dab340bbecfc18654e1d126a47d8936241e8e2f036b0d66294c7d
 ENV FUSEKI_VERSION 4.8.0
-# No need for https due to sha512 checksums below
-ENV ASF_MIRROR http://www.apache.org/dyn/mirrors/mirrors.cgi?action=download&filename=
-ENV ASF_ARCHIVE http://archive.apache.org/dist/
+ENV ASF_MIRROR https://www.apache.org/dyn/mirrors/mirrors.cgi?action=download&filename=
+ENV ASF_ARCHIVE https://archive.apache.org/dist/
 
 LABEL org.opencontainers.image.url https://github.com/stain/jena-docker/tree/master/jena-fuseki
 LABEL org.opencontainers.image.source https://github.com/stain/jena-docker/
