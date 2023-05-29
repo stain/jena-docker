@@ -162,7 +162,7 @@ computer:
     docker run --volumes-from fuseki-data -v /home/stain/ops/chembl19:/staging \
        stain/jena-fuseki ./load.sh chembl19 cco.ttl.gz void.ttl.gz
 
-**Tip:** You might find it benefitial to run data loading from the data staging
+**Tip:** You might find it beneficial to run data loading from the data staging
 directory in order to use tab-completion etc. without exposing the path on the
 host. The `./load.sh` will expand patterns like `*.ttl` - you might have to
 use single quotes (e.g. `'*.ttl'`) on the host to avoid them being expanded
@@ -234,7 +234,7 @@ If you need to modify Fuseki's configuration further, you can use the equivalent
 
     docker run --volumes-from fuseki-data -it ubuntu bash
 
-and inspect `/fuseki` with the shell. Remember to restart fuseki afterwards:
+and inspect `/fuseki` with the shell. Remember to restart fuseki afterward:
 
     docker restart fuseki
 
