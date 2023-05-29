@@ -82,17 +82,22 @@ COPY tdbloader2 $FUSEKI_HOME/
 RUN chmod 755 $FUSEKI_HOME/load.sh $FUSEKI_HOME/tdbloader $FUSEKI_HOME/tdbloader2
 #VOLUME /staging
 
+# Create a fuseki user and group
+RUN addgroup -S fuseki && \
+    adduser -G fuseki -S -D -H fuseki
 
 # Where we start our server from
 WORKDIR $FUSEKI_HOME
-RUN chown -R 10001:0 $FUSEKI_HOME && chmod -R og+rwx $FUSEKI_HOME
+RUN chown -R fuseki:fuseki $FUSEKI_HOME
 
 # Make sure we start with empty /fuseki
-RUN rm -rf $FUSEKI_BASE
+RUN mkdir -p $FUSEKI_BASE; \
+    rm -rf $FUSEKI_BASE/*; \
+    chown -R fuseki:fuseki $FUSEKI_BASE
 VOLUME $FUSEKI_BASE
 
 EXPOSE 3030
-USER 10001
+USER fuseki
 
 ENTRYPOINT ["/usr/bin/tini", "--", "sh", "/docker-entrypoint.sh"]
 CMD ["/jena-fuseki/fuseki-server"]
