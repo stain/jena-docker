@@ -14,25 +14,22 @@
 #   limitations under the License.
 
 
-FROM openjdk:11-jre-slim-buster
+FROM eclipse-temurin:17-jre-alpine
 MAINTAINER Stian Soiland-Reyes <stain@apache.org>
 
 ENV LANG C.UTF-8
 RUN set -eux; \
-    apt-get update; \
-    apt-get install -y --no-install-recommends \
-    bash curl ca-certificates findutils coreutils gettext pwgen procps tini \
-    ; \
-    rm -rf /var/lib/apt/lists/*
+    apk -U upgrade; \
+    apk add bash curl ca-certificates findutils coreutils gettext pwgen procps tini; \
+    rm -rf /var/cache/apk/*
 
 
 # Update below according to https://jena.apache.org/download/ 
 # and checksum for apache-jena-fuseki-4.x.x.tar.gz.sha512
-ENV FUSEKI_SHA512 9646343a23c2563357207f559cb7437aa91b52d02b87e70d77b746b609e93ed0ad9dce06e072f864d53422946f24aa8ee60d9c594c1f82e8f2ab226eba56e474
-ENV FUSEKI_VERSION 4.7.0
-# No need for https due to sha512 checksums below
-ENV ASF_MIRROR http://www.apache.org/dyn/mirrors/mirrors.cgi?action=download&filename=
-ENV ASF_ARCHIVE http://archive.apache.org/dist/
+ENV FUSEKI_SHA512 78074d87d4c022ef7e89b8394d2b14ead447a9201d52795d8c9adab0e03341cffc883abb849dab340bbecfc18654e1d126a47d8936241e8e2f036b0d66294c7d
+ENV FUSEKI_VERSION 4.8.0
+ENV ASF_MIRROR https://www.apache.org/dyn/mirrors/mirrors.cgi?action=download&filename=
+ENV ASF_ARCHIVE https://archive.apache.org/dist/
 
 LABEL org.opencontainers.image.url https://github.com/stain/jena-docker/tree/master/jena-fuseki
 LABEL org.opencontainers.image.source https://github.com/stain/jena-docker/
@@ -83,18 +80,23 @@ COPY tdbloader2 $FUSEKI_HOME/
 RUN chmod 755 $FUSEKI_HOME/load.sh $FUSEKI_HOME/tdbloader $FUSEKI_HOME/tdbloader2
 #VOLUME /staging
 
+# Create a fuseki user and group
+RUN addgroup -S fuseki && \
+    adduser -G fuseki -S -D -H fuseki
 
 # Where we start our server from
 WORKDIR $FUSEKI_HOME
-RUN chown -R 10001:0 $FUSEKI_HOME && chmod -R og+rwx $FUSEKI_HOME
+RUN chown -R fuseki:fuseki $FUSEKI_HOME
 
 # Make sure we start with empty /fuseki
-RUN rm -rf $FUSEKI_BASE
+RUN mkdir -p $FUSEKI_BASE; \
+    rm -rf $FUSEKI_BASE/*; \
+    chown -R fuseki:fuseki $FUSEKI_BASE
 VOLUME $FUSEKI_BASE
 
 EXPOSE 3030
-USER 10001
+USER fuseki
 
-ENTRYPOINT ["/usr/bin/tini", "--", "sh", "/docker-entrypoint.sh"]
+ENTRYPOINT ["/sbin/tini", "--", "sh", "/docker-entrypoint.sh"]
 CMD ["/jena-fuseki/fuseki-server"]
 
