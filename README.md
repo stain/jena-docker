@@ -28,7 +28,7 @@ docker build -t jena-fuseki jena-fuseki
  
 ## Dockerfile overview
 
-The `Dockerfile`s for both images use the official [eclipse-temurin:17-jre-alpine](https://hub.docker.com/r/_/eclipse-temurin/) base image, which is based on the [`Apline`](https://hub.docker.com/_/alpine/):3.18.0 image; this clocks in at about 55 MB.
+The `Dockerfile`s for both images use the official [eclipse-temurin:17-jre-alpine](https://hub.docker.com/r/_/eclipse-temurin/) base image, which is based on the [`Alpine`](https://hub.docker.com/_/alpine/):3.18.0 image; this clocks in at about 55 MB.
 
 The `ENV` variables like `JENA_VERSION` and `FUSEKI_VERSION` determines which version of Jena and Fuseki are downloaded. Updating the version also requires updating the `JENA_SHA512` and `FUSEKI_SHA512` variables, which values should match the official Jena download `.tar.gz.sha512` hashes, as approved in their release `[VOTE]` emails.
 
