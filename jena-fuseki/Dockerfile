@@ -26,8 +26,8 @@ RUN set -eux; \
 
 # Update below according to https://jena.apache.org/download/ 
 # and checksum for apache-jena-fuseki-4.x.x.tar.gz.sha512
-ENV FUSEKI_SHA512 78074d87d4c022ef7e89b8394d2b14ead447a9201d52795d8c9adab0e03341cffc883abb849dab340bbecfc18654e1d126a47d8936241e8e2f036b0d66294c7d
-ENV FUSEKI_VERSION 4.8.0
+ENV FUSEKI_SHA512 c7b9fa452cdec19c50ee08ee191012b26c7b51f1ee5c5143db3047e0545c007599fbc08481fa61df5aef766a796e43262c209fc42578f2e532c0ab0c19dcbc51
+ENV FUSEKI_VERSION 5.0.0
 ENV ASF_MIRROR https://www.apache.org/dyn/mirrors/mirrors.cgi?action=download&filename=
 ENV ASF_ARCHIVE https://archive.apache.org/dist/
 
