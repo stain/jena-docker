@@ -73,21 +73,25 @@ is lost between each run of the jena-fuseki image.
 To store the data in a named Docker volume container `fuseki-data`
 (recommended), create it first as:
 
-    docker run --name fuseki-data -v /fuseki busybox
+    docker volume create fuseki-data
 
 Then start fuseki using `--volumes-from`. This allows you to later upgrade the
 jena-fuseki docker image without losing the data. The command below also uses
 `-d` to start the container in the background.
 
-    docker run -d --name fuseki -p 3030:3030 --volumes-from fuseki-data stain/jena-fuseki
+    docker run -d --name fuseki -p 3030:3030 --volume fuseki-data:/fuseki stain/jena-fuseki
 
 If you want to store fuseki data in a specified location on the host (e.g. for
-disk space or speed requirements), specify it using `-v`:
+disk space or speed requirements), specify it using `--volume`:
 
-    docker run -d --name fuseki -p 3030:3030 -v /ssd/data/fuseki:/fuseki stain/jena-fuseki
+    docker run -d --name fuseki -p 3030:3030 --volume /ssd/data/fuseki:/fuseki stain/jena-fuseki
 
 Note that the `/fuseki` volume must only be accessed from a single Fuseki
-container at a time.
+container at a time, to avoid [lock errors](https://jena.apache.org/documentation/tdb/faqs.html#lock-exception). 
+
+Within the container Fuseki runs as the `fuseki` user which typically have UID 100, this can cause a problem if you are mounting the folder from outside. You can fix permission on your `/fuseki` folder:
+
+    docker run --user 0 --volume /ssd/data/fuseki:/fuseki stain/jena:5.0.0 chown -R 100 /fuseki
 
 To check the logs for the container you gave `--name fuseki`, use:
 
@@ -235,7 +239,7 @@ If you need to modify Fuseki's configuration further, you can use the equivalent
     docker run --volumes-from fuseki-data -it ubuntu bash
 
 and inspect `/fuseki` with the shell. Remember to restart fuseki afterward:
-
+docker run --user 0 --volume fuseki-data:/fuseki stain/jena:5.0.0 chown -R 100 /fuseki
     docker restart fuseki
 
 ### Additional JARs on Fuseki classpath
