@@ -1,7 +1,7 @@
 # Jena Fuseki docker image
 
 * Docker image: [stain/jena-fuseki](https://hub.docker.com/r/stain/jena-fuseki/)
-* Base images: [eclipse-temurin](https://hub.docker.com/r/_/eclipse-temurin/):17-jre-alpine
+* Base images: [eclipse-temurin](https://hub.docker.com/r/_/eclipse-temurin/):21-jre-alpine
 * Source: [Dockerfile](https://github.com/stain/jena-docker/blob/master/jena-fuseki/Dockerfile), [Apache Jena Fuseki](https://jena.apache.org/download/)
 
 [![Build](https://github.com/stain/jena-docker/actions/workflows/main.yml/badge.svg)](https://github.com/stain/jena-docker/actions/workflows/main.yml)

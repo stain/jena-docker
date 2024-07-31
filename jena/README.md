@@ -1,7 +1,7 @@
 # Jena command line tools
 
 * Docker image: [stain/jena](https://hub.docker.com/r/stain/jena/)
-* Base images: [eclipse-temurin](https://hub.docker.com/r/_/eclipse-temurin/):17-jre-alpine
+* Base images: [eclipse-temurin](https://hub.docker.com/r/_/eclipse-temurin/):21-jre-alpine
 * Source: [Dockerfile](https://github.com/stain/jena-docker/blob/master/jena/Dockerfile), [Apache Jena](http://jena.apache.org/download/)
 
 
