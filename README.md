@@ -10,14 +10,21 @@ Two Docker images are available:
  - [jena](jena/) - `riot` command line and friends, for use on the command line
  - [fuseki](fuseki/) - the [Fuseki](http://jena.apache.org/documentation/fuseki2/) server with SPARQL endpoint and web interface
  
-These are currently available from the Docker Hub as:
+These are available from GitHub as:
+
+- [ghcr.io/stain/jena](https://github.com/users/stain/packages/container/package/jena)
+- [ghcr.io/stain/jena-fuseki](https://github.com/users/stain/packages/container/package/jena-fuseki)
+
+..and from the Docker Hub as:
 
  - [stain/jena](https://hub.docker.com/r/stain/jena/)
  - [stain/jena-fuseki](https://hub.docker.com/r/stain/jena-fuseki/)
 
+
+
 Note that although these Docker images are based on the official Apache Jena releases
 and do not alter them in any way, they do **not** constitute official releases
-from Apache Software Foundation.
+from Apache Software Foundation, and are probably not the latest version.
 
 ## Building
 
@@ -40,4 +47,11 @@ Some files from the Apache Jena distributions are stripped, e.g. javadocs and th
 
 The Fuseki image includes some [helper scripts](jena-fuseki/load.sh) to do [tdb loading](https://jena.apache.org/documentation/tdb/commands.html) using `fuseki-server.jar`.
 In addition, Fuseki has a [`docker-entrypoint.sh`](https://github.com/stain/jena-docker/blob/master/jena-fuseki/docker-entrypoint.sh) that populates `shiro.ini` with the password provided as `-e ADMIN_PASSWORD` to Docker, or with a new randomly generated password that is printed the first time.
+
+## Usage
+
+For usage, see README for each of the Docker images:
+
+* [jena/README.md](jena/README.md)
+* [jena-fuseki/README.md](jena-fuseki/README.md)
 
