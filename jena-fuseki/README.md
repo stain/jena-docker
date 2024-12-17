@@ -53,10 +53,10 @@ use `docker logs` with the name of your container.
 Note that the password is only generated on the first run, e.g. when the
 volume `/fuseki` is an empty directory.
 
-You can override the admin-password using the form
-`-e ADMIN_PASSWORD=pw123`:
+You can override the admin-password and/or admin-username using the form
+`-e ADMIN_USERNAME=jena_user -e ADMIN_PASSWORD=pw123`:
 
-    docker run -p 3030:3030 -e ADMIN_PASSWORD=pw123 stain/jena-fuseki
+    docker run -p 3030:3030 -e ADMIN_USERNAME=jena_user -e ADMIN_PASSWORD=pw123 stain/jena-fuseki
 
 To specify Java settings such as the amount of memory to allocate for the
 heap (default: 1200 MiB), set the `JVM_ARGS` environment with `-e`:

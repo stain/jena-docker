@@ -22,11 +22,18 @@ if [ ! -f "$FUSEKI_BASE/shiro.ini" ] ; then
   echo "Initializing Apache Jena Fuseki"
   echo ""
   cp "$FUSEKI_HOME/shiro.ini" "$FUSEKI_BASE/shiro.ini"
+  if echo -n "$ADMIN_USERNAME" | grep -qE '=' ; then
+      echo "invalid ADMIN_USERNAME '$ADMIN_USERNAME', it can not contain ="
+      unset ADMIN_USERNAME
+  fi
+  if [ -z "$ADMIN_USERNAME" ]; then
+      export ADMIN_USERNAME=admin
+  fi
   if [ -z "$ADMIN_PASSWORD" ] ; then
     ADMIN_PASSWORD=$(pwgen -s 15)
     echo "Randomly generated admin password:"
     echo ""
-    echo "admin=$ADMIN_PASSWORD"
+    echo "${ADMIN_USERNAME}=${ADMIN_PASSWORD}"
   fi
   echo ""
   echo "###################################"
@@ -39,10 +46,12 @@ fi
 # $ADMIN_PASSWORD only modifies if ${ADMIN_PASSWORD}
 # is in shiro.ini
 if [ -n "$ADMIN_PASSWORD" ] ; then
-  export ADMIN_PASSWORD
-  envsubst '${ADMIN_PASSWORD}' < "$FUSEKI_BASE/shiro.ini" > "$FUSEKI_BASE/shiro.ini.$$" && \
-    mv "$FUSEKI_BASE/shiro.ini.$$" "$FUSEKI_BASE/shiro.ini"
-  export ADMIN_PASSWORD
+    export ADMIN_USERNAME
+    export ADMIN_PASSWORD
+    envsubst '${ADMIN_USERNAME} ${ADMIN_PASSWORD}' < "$FUSEKI_BASE/shiro.ini" > "$FUSEKI_BASE/shiro.ini.$$" && \
+        mv "$FUSEKI_BASE/shiro.ini.$$" "$FUSEKI_BASE/shiro.ini"
+    export ADMIN_USERNAME
+    export ADMIN_PASSWORD
 fi
 
 # fork 
@@ -67,12 +76,13 @@ do
     dataset=$(echo $env_var | egrep -o "=.*$" | sed 's/^=//g')
     echo "Creating dataset $dataset"
     curl -s 'http://localhost:3030/$/datasets'\
-         -u admin:${ADMIN_PASSWORD}\
+         -u ${ADMIN_USERNAME}:${ADMIN_PASSWORD}\
          -H 'Content-Type: application/x-www-form-urlencoded; charset=UTF-8'\
          --data "dbName=${dataset}&dbType=${TDB_VERSION}"
 done
 echo "Fuseki is available :-)"
-unset ADMIN_PASSWORD # Don't keep it in memory
+unset ADMIN_USERNAME # Don't keep it in memory
+unset ADMIN_PASSWORD
 
 # rejoin our exec
 wait
