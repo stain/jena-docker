@@ -63,6 +63,21 @@ heap (default: 1200 MiB), set the `JVM_ARGS` environment with `-e`:
 
     docker run -p 3030:3030 -e JVM_ARGS=-Xmx2g stain/jena-fuseki
 
+## Customize logging
+
+The Docker container outputs logs to stdout which can be read by using docker logs CONTAINER_ID.
+The log entries follows the pattern of `09:44:30 INFO Entrypoint :: Initializing Apache Jena Fuseki`.
+The first component is the timestamp of the event and it can changed with the LOG_FORMAT variable.
+
+For example if you were to start the container like this:
+
+```docker run -p 3030:3030 -e LOG_FORMAT="%y-%m-%d %H:%M:%S %% %Z" stain/jena-fuseki```
+
+Then you would see log entries like theese:
+
+```24-12-14 09:44:30 % UTC INFO Entrypoint :: Initializing Apache Jena Fuseki```
+
+Please read the man page for date(1) for information about strfttime format.
 
 ## Data persistence
 

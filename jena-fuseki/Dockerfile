@@ -73,6 +73,10 @@ COPY shiro.ini $FUSEKI_HOME/shiro.ini
 COPY docker-entrypoint.sh /
 RUN chmod 755 /docker-entrypoint.sh
 
+COPY logging.sh $FUSEKI_HOME/logging.sh
+RUN chmod 444 $FUSEKI_HOME/logging.sh
+
+COPY log4j2.properties $FUSEKI_HOME/log4j2.properties.templ
 
 COPY load.sh $FUSEKI_HOME/
 COPY tdbloader $FUSEKI_HOME/
