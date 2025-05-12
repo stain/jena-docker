@@ -28,8 +28,8 @@ RUN set -eux; \
 
 # Update below according to https://jena.apache.org/download/
 # and checksum for apache-jena-4.x.x.tar.gz.sha512
-ENV JENA_SHA512 f426275591aaa5274a89cab2f2ee16623086c5f0c7669bda5b2cead90089497e57098885745fd88e3c7db75cbaac48fe58f84ec9cd2dbb937592ff2f0ef0f92e
-ENV JENA_VERSION 5.1.0
+ENV JENA_SHA512 0d1d13dd8bb098b28996ffd9871f3a42f54984ac276c10dab0c0d2ccd8c66d69737f20bc3fc05f1ee3a2ceeacba318ef5f1a1f4fd2cba19041210675fac245ed
+ENV JENA_VERSION 5.4.0
 ENV ASF_MIRROR https://www.apache.org/dyn/mirrors/mirrors.cgi?action=download&filename=
 ENV ASF_ARCHIVE https://archive.apache.org/dist/
 
