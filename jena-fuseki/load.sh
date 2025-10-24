@@ -72,4 +72,4 @@ echo ""
 echo $files
 echo "#########"
 
-exec $FUSEKI_HOME/tdbloader $TDBLOADER_OPTS --loc=$FUSEKI_BASE/databases/$DB $files
+exec $FUSEKI_HOME/tdbloader2 $TDBLOADER_OPTS --loc=$FUSEKI_BASE/databases/$DB $files
