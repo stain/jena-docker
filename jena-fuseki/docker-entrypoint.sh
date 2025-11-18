@@ -22,7 +22,12 @@ if [ ! -f "$FUSEKI_BASE/shiro.ini" ] ; then
   echo "Initializing Apache Jena Fuseki"
   echo ""
   cp "$FUSEKI_HOME/shiro.ini" "$FUSEKI_BASE/shiro.ini"
-  if [ -z "$ADMIN_PASSWORD" ] ; then
+  if [ -f "/run/secrets/admin_password" ] ; then
+    ADMIN_PASSWORD=$(cat /run/secrets/admin_password)
+    echo "Password read from Docker secret:"
+    echo ""
+    echo "admin=$ADMIN_PASSWORD"  
+  elif [ -z "$ADMIN_PASSWORD" ] ; then
     ADMIN_PASSWORD=$(pwgen -s 15)
     echo "Randomly generated admin password:"
     echo ""
