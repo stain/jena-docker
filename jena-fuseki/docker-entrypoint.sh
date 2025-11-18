@@ -22,7 +22,11 @@ if [ ! -f "$FUSEKI_BASE/shiro.ini" ] ; then
   echo "Initializing Apache Jena Fuseki"
   echo ""
   cp "$FUSEKI_HOME/shiro.ini" "$FUSEKI_BASE/shiro.ini"
-  if [ -z "$ADMIN_PASSWORD" ] ; then
+  # Check for Docker secret file first, then environment variable
+  if [ -f "/run/secrets/admin_password" ] ; then
+    ADMIN_PASSWORD=$(cat /run/secrets/admin_password)
+    echo "Using admin password from Docker secret"
+  elif [ -z "$ADMIN_PASSWORD" ] ; then
     ADMIN_PASSWORD=$(pwgen -s 15)
     echo "Randomly generated admin password:"
     echo ""
@@ -38,6 +42,11 @@ fi
 
 # $ADMIN_PASSWORD only modifies if ${ADMIN_PASSWORD}
 # is in shiro.ini
+# Check for Docker secret file if ADMIN_PASSWORD is not already set
+if [ -z "$ADMIN_PASSWORD" ] && [ -f "/run/secrets/admin_password" ] ; then
+  ADMIN_PASSWORD=$(cat /run/secrets/admin_password)
+fi
+
 if [ -n "$ADMIN_PASSWORD" ] ; then
   export ADMIN_PASSWORD
   envsubst '${ADMIN_PASSWORD}' < "$FUSEKI_BASE/shiro.ini" > "$FUSEKI_BASE/shiro.ini.$$" && \

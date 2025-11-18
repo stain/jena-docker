@@ -58,6 +58,30 @@ You can override the admin-password using the form
 
     docker run -p 3030:3030 -e ADMIN_PASSWORD=pw123 stain/jena-fuseki
 
+Alternatively, you can use Docker secrets to provide the admin password more securely.
+First, create a secret:
+
+    echo "my_secure_password" | docker secret create admin_password -
+
+Then run the container with the secret:
+
+    docker service create --name fuseki --secret admin_password -p 3030:3030 stain/jena-fuseki
+
+Or for Docker Compose, add to your `docker-compose.yml`:
+
+```yaml
+services:
+  fuseki:
+    image: stain/jena-fuseki
+    secrets:
+      - admin_password
+    ports:
+      - "3030:3030"
+secrets:
+  admin_password:
+    external: true
+```
+
 To specify Java settings such as the amount of memory to allocate for the
 heap (default: 1200 MiB), set the `JVM_ARGS` environment with `-e`:
 
