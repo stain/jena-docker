@@ -15,7 +15,8 @@
 
 
 FROM eclipse-temurin:21-jre-alpine
-MAINTAINER Stian Soiland-Reyes <stain@apache.org>
+LABEL maintainer="Stian Soiland-Reyes <stain@apache.org>"
+
 
 ENV LANG C.UTF-8
 RUN set -eux; \
@@ -26,8 +27,8 @@ RUN set -eux; \
 
 # Update below according to https://jena.apache.org/download/ 
 # and checksum for apache-jena-fuseki-4.x.x.tar.gz.sha512
-ENV FUSEKI_SHA512 50d33937092e8120d57f503b6e96ef988894602aa060ff945ec3aecf0349b0b22250e158bb379d0300589653dc9d6f3e6eb2b9790b5125144108dd6f19dc41e6
-ENV FUSEKI_VERSION 5.1.0
+ENV FUSEKI_SHA512 8b14dcefade409bb4efd94e05291ea46d50508bf175f6f163f328d1d80183559a4c5b75806802283802a2879405a132b9b311e2277f784a784fa66ce4a9d8722
+ENV FUSEKI_VERSION 6.0.0
 ENV ASF_MIRROR https://www.apache.org/dyn/mirrors/mirrors.cgi?action=download&filename=
 ENV ASF_ARCHIVE https://archive.apache.org/dist/
 
