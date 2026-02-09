@@ -15,7 +15,7 @@
 
 FROM eclipse-temurin:21-jre-alpine
 
-MAINTAINER Stian Soiland-Reyes <stain@apache.org>
+LABEL maintainer="Stian Soiland-Reyes <stain@apache.org>"
 
 ENV LANG C.UTF-8
 
@@ -28,8 +28,8 @@ RUN set -eux; \
 
 # Update below according to https://jena.apache.org/download/
 # and checksum for apache-jena-4.x.x.tar.gz.sha512
-ENV JENA_SHA512 f426275591aaa5274a89cab2f2ee16623086c5f0c7669bda5b2cead90089497e57098885745fd88e3c7db75cbaac48fe58f84ec9cd2dbb937592ff2f0ef0f92e
-ENV JENA_VERSION 5.1.0
+ENV JENA_SHA512 c66b413f0c97e465c8a5a71f2718116134c65efa71205e136a42ad0ee6d39deece0dcbcc99801d806e4b60af5fe886c72eb53c77bc464fe9d2d0f1ba2d3ec1fe
+ENV JENA_VERSION 6.0.0
 ENV ASF_MIRROR https://www.apache.org/dyn/mirrors/mirrors.cgi?action=download&filename=
 ENV ASF_ARCHIVE https://archive.apache.org/dist/
 
