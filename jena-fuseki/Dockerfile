@@ -14,7 +14,7 @@
 #   limitations under the License.
 
 
-FROM openjdk:11-jre-slim-buster
+FROM public.ecr.aws/docker/library/openjdk:11-jre-slim-buster
 MAINTAINER Stian Soiland-Reyes <stain@apache.org>
 
 ENV LANG C.UTF-8

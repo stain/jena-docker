@@ -13,7 +13,7 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 
-FROM openjdk:11-jre-slim-buster
+FROM public.ecr.aws/docker/library/openjdk:11-jre-slim-buster
 
 MAINTAINER Stian Soiland-Reyes <stain@apache.org>
 
