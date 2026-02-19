@@ -13,28 +13,25 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 
-FROM public.ecr.aws/docker/library/openjdk:11-jre-slim-buster
+FROM eclipse-temurin:21-jre-alpine
 
 MAINTAINER Stian Soiland-Reyes <stain@apache.org>
 
 ENV LANG C.UTF-8
 
 RUN set -eux; \
-    apt-get update; \
-    apt-get install -y --no-install-recommends \
-       bash curl ca-certificates findutils coreutils \
-    ; \
-    rm -rf /var/lib/apt/lists/*
+    apk -U upgrade; \
+    apk add bash curl ca-certificates findutils coreutils procps; \
+    rm -rf /var/cache/apk/*
 
 
 
-# Update below according to https://jena.apache.org/download/ 
-# and checksum for apache-jena-3.x.x.tar.gz.sha512
-ENV JENA_SHA512 ba2e966df3ff2c8727b02f95771aa9f9953687fadbd51a95fff3709bb342ca64c1ac54bc25c9e24432b038c14737979c48fad5885e5841d6c15cc4967859b037
-ENV JENA_VERSION 3.14.0
-# No need for https due to sha512 checksums below
-ENV ASF_MIRROR http://www.apache.org/dyn/mirrors/mirrors.cgi?action=download&filename=
-ENV ASF_ARCHIVE http://archive.apache.org/dist/
+# Update below according to https://jena.apache.org/download/
+# and checksum for apache-jena-4.x.x.tar.gz.sha512
+ENV JENA_SHA512 f426275591aaa5274a89cab2f2ee16623086c5f0c7669bda5b2cead90089497e57098885745fd88e3c7db75cbaac48fe58f84ec9cd2dbb937592ff2f0ef0f92e
+ENV JENA_VERSION 5.1.0
+ENV ASF_MIRROR https://www.apache.org/dyn/mirrors/mirrors.cgi?action=download&filename=
+ENV ASF_ARCHIVE https://archive.apache.org/dist/
 
 LABEL org.opencontainers.image.url https://github.com/stain/jena-docker/tree/master/jena
 LABEL org.opencontainers.image.source https://github.com/stain/jena-docker/

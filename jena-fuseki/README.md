@@ -1,18 +1,18 @@
-# Jena Fuseki 2 docker image
+# Jena Fuseki docker image
 
 * Docker image: [stain/jena-fuseki](https://hub.docker.com/r/stain/jena-fuseki/)
-* Base images:  [openjdk](https://hub.docker.com/r/_/openjdk/):11-jre-slim-buster
+* Base images: [eclipse-temurin](https://hub.docker.com/r/_/eclipse-temurin/):21-jre-alpine
 * Source: [Dockerfile](https://github.com/stain/jena-docker/blob/master/jena-fuseki/Dockerfile), [Apache Jena Fuseki](https://jena.apache.org/download/)
 
-[![Build Status](https://travis-ci.org/stain/jena-docker.svg)](https://travis-ci.org/stain/jena-docker)
+[![Build](https://github.com/stain/jena-docker/actions/workflows/main.yml/badge.svg)](https://github.com/stain/jena-docker/actions/workflows/main.yml)
 
 [![](https://images.microbadger.com/badges/image/stain/jena-fuseki.svg)](https://microbadger.com/images/stain/jena-fuseki "stain/jena-fuseki")
 
-[![](https://images.microbadger.com/badges/version/stain/jena-fuseki:3.14.0.svg)](https://github.com/stain/jena-docker/ "Jena Fuseki 3.14.0")
+[![](https://images.microbadger.com/badges/version/stain/jena-fuseki:4.8.0.svg)](https://github.com/stain/jena-docker/ "Jena Fuseki 4.8.0")
 
 
 This is a [Docker](https://www.docker.com/) image for running
-[Apache Jena Fuseki 2](https://jena.apache.org/documentation/fuseki2/),
+[Apache Jena Fuseki](https://jena.apache.org/documentation/fuseki2/),
 which is a [SPARQL 1.1](http://www.w3.org/TR/sparql11-overview/) server with a
 web interface, backed by the
 [Apache Jena TDB](https://jena.apache.org/documentation/tdb/) RDF triple store.
@@ -28,9 +28,9 @@ Different licenses apply to files added by different Docker layers:
 * stain/jena-fuseki [Dockerfile](https://github.com/stain/jena-docker/blob/master/jena-fuseki/Dockerfile): [Apache License, version 2.0](https://www.apache.org/licenses/LICENSE-2.0)
 * Apache Jena (`/jena-fuseki` in the image): [Apache License, version 2.0](https://www.apache.org/licenses/LICENSE-2.0)
   See also: `docker run stain/jena-fuseki cat /jena-fuseki/NOTICE`
-* OpenJDK (`/usr/local/openjdk-11/` in the image): [GPL 2.0 with Classpath exception](https://openjdk.java.net/legal/gplv2+ce.html)
-  See `/usr/local/openjdk-11/legal/` in image
-* Debian GNU/Linux (rest of `/`): [GPL 3](http://www.gnu.org/licenses/gpl-3.0) and [compatible licenses](https://www.debian.org/legal/licenses/), see `/usr/share/*/license` in image
+* OpenJDK (`/opt/java/openjdk/` in the image): [GPL 2.0 with Classpath exception](https://openjdk.java.net/legal/gplv2+ce.html)
+  See `/opt/java/openjdk/legal/` in image
+* Alpine GNU/Linux (rest of `/`): [GPL 2](http://www.gnu.org/licenses/gpl-2.0) and [Alpine License Information](https://gitlab.alpinelinux.org/alpine/aports/-/issues/7423)
 
 
 ## Use
@@ -73,21 +73,25 @@ is lost between each run of the jena-fuseki image.
 To store the data in a named Docker volume container `fuseki-data`
 (recommended), create it first as:
 
-    docker run --name fuseki-data -v /fuseki busybox
+    docker volume create fuseki-data
 
 Then start fuseki using `--volumes-from`. This allows you to later upgrade the
 jena-fuseki docker image without losing the data. The command below also uses
 `-d` to start the container in the background.
 
-    docker run -d --name fuseki -p 3030:3030 --volumes-from fuseki-data stain/jena-fuseki
+    docker run -d --name fuseki -p 3030:3030 --volume fuseki-data:/fuseki stain/jena-fuseki
 
 If you want to store fuseki data in a specified location on the host (e.g. for
-disk space or speed requirements), specify it using `-v`:
+disk space or speed requirements), specify it using `--volume`:
 
-    docker run -d --name fuseki -p 3030:3030 -v /ssd/data/fuseki:/fuseki stain/jena-fuseki
+    docker run -d --name fuseki -p 3030:3030 --volume /ssd/data/fuseki:/fuseki stain/jena-fuseki
 
 Note that the `/fuseki` volume must only be accessed from a single Fuseki
-container at a time.
+container at a time, to avoid [lock errors](https://jena.apache.org/documentation/tdb/faqs.html#lock-exception). 
+
+Within the container Fuseki runs as the `fuseki` user which typically have UID 100, this can cause a problem if you are mounting the folder from outside. You can fix permission on your `/fuseki` folder:
+
+    docker run --user 0 --volume /ssd/data/fuseki:/fuseki stain/jena:5.0.0 chown -R 100 /fuseki
 
 To check the logs for the container you gave `--name fuseki`, use:
 
@@ -103,6 +107,15 @@ To restart a named container (it will remember the volume and port config)
 
     docker restart fuseki
 
+### Using TDB 2
+
+To use [TDB v2](https://jena.apache.org/documentation/tdb2/) you can pass the environment variable with `-e TDB=2`
+
+     docker run -p 3030:3030 -e TDB=2 stain/jena-fuseki
+
+If you do so, then you need to use the appropriate `tdbloader2` for your data, see below for more details.
+
+
 ## Upgrading Fuseki
 
 If you want to upgrade the Fuseki container named `fuseki` which use the data
@@ -117,7 +130,7 @@ volume `fuseki-data` as recommended above, do:
 
 You can create empty datasets at startup with:
 
-    docker run -d --name fuseki -p 3030:3030 -e FUSEKI_DATASET1=mydataset -e FUSEKI_DATASET_2=otherdataset stain/jena-fuseki
+    docker run -d --name fuseki -p 3030:3030 -e FUSEKI_DATASET_1=mydataset -e FUSEKI_DATASET_2=otherdataset stain/jena-fuseki
 
 This will create 2 empty datasets: mydataset and otherdataset.
 
@@ -153,7 +166,7 @@ computer:
     docker run --volumes-from fuseki-data -v /home/stain/ops/chembl19:/staging \
        stain/jena-fuseki ./load.sh chembl19 cco.ttl.gz void.ttl.gz
 
-**Tip:** You might find it benefitial to run data loading from the data staging
+**Tip:** You might find it beneficial to run data loading from the data staging
 directory in order to use tab-completion etc. without exposing the path on the
 host. The `./load.sh` will expand patterns like `*.ttl` - you might have to
 use single quotes (e.g. `'*.ttl'`) on the host to avoid them being expanded
@@ -171,6 +184,15 @@ graphs, see the `tdbloader` section below.
 admin password will be set before you have started Fuseki.
 You can either check the output of the data loading, or later override the
 password using `-e ADMIN_PASSWORD=pw123`.
+
+
+### Using the `tdbloader2` for TDB2
+
+Assume you have already the container running named `fuseki` you can execute
+
+    docker exec -it fuseki  /bin/bash -c 'tdbloader2 --loc chembl19  /staging/{cco.ttl.gz,void.ttl.gz}'
+
+
 
 
 ## Recognizing the dataset in Fuseki
@@ -216,13 +238,20 @@ If you need to modify Fuseki's configuration further, you can use the equivalent
 
     docker run --volumes-from fuseki-data -it ubuntu bash
 
-and inspect `/fuseki` with the shell. Remember to restart fuseki afterwards:
-
+and inspect `/fuseki` with the shell. Remember to restart fuseki afterward:
+docker run --user 0 --volume fuseki-data:/fuseki stain/jena:5.0.0 chown -R 100 /fuseki
     docker restart fuseki
+
+### Additional JARs on Fuseki classpath
+
+If you need to add additional JARs to the classpath, but do not want to 
+modify the volume `/fuseki`, then add the JARs to
+`/fuseki-extra` which will be added as `/fuseki/extra` on start.
+
 
 ## Contact
 
-For any feedback or questions on Jena, Fuseki or SPARQ, please use the
+For any feedback or questions on Jena, Fuseki or SPARQL, please use the
 [users@jena](https://jena.apache.org/help_and_support/) mailing list.
 
 

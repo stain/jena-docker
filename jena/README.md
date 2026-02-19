@@ -1,15 +1,15 @@
 # Jena command line tools
 
 * Docker image: [stain/jena](https://hub.docker.com/r/stain/jena/)
-* Base images: [openjdk](https://hub.docker.com/r/_/openjdk/):11-jre-slim-buster
+* Base images: [eclipse-temurin](https://hub.docker.com/r/_/eclipse-temurin/):21-jre-alpine
 * Source: [Dockerfile](https://github.com/stain/jena-docker/blob/master/jena/Dockerfile), [Apache Jena](http://jena.apache.org/download/)
 
 
-[![Build Status](https://travis-ci.org/stain/jena-docker.svg)](https://travis-ci.org/stain/jena-docker)
+[![Build](https://github.com/stain/jena-docker/actions/workflows/main.yml/badge.svg)](https://github.com/stain/jena-docker/actions/workflows/main.yml)
 
 [![](https://images.microbadger.com/badges/image/stain/jena.svg)](https://microbadger.com/images/stain/jena "stain/jena")
 
-[![](https://images.microbadger.com/badges/version/stain/jena:3.14.0.svg)](https://github.com/stain/jena-docker/tree/master/jena "Jena 3.14.0")
+[![](https://images.microbadger.com/badges/version/stain/jena:4.8.0.svg)](https://github.com/stain/jena-docker/tree/master/jena "Jena 4.8.0")
 
 This docker image exposes the [Apache Jena](https://jena.apache.org/)
 command line tool [riot](https://jena.apache.org/documentation/io/#command-line-tools)
@@ -23,9 +23,9 @@ Different licenses apply to files added by different Docker layers:
 * stain/jena [Dockerfile](https://github.com/stain/jena-docker/blob/master/jena/Dockerfile): [Apache License, version 2.0](https://www.apache.org/licenses/LICENSE-2.0)
 * Apache Jena (`/jena` in the image): [Apache License, version 2.0](https://www.apache.org/licenses/LICENSE-2.0)
   See also: `docker run stain/jena cat /jena/NOTICE`
-* OpenJDK (`/usr/local/openjdk-11/` in the image): [GPL 2.0 with Classpath exception](https://openjdk.java.net/legal/gplv2+ce.html)
-  See `/usr/local/openjdk-11/legal/` in image
-* Debian GNU/Linux (rest of `/`): [GPL 3](http://www.gnu.org/licenses/gpl-3.0) and [compatible licenses](https://www.debian.org/legal/licenses/), see `/usr/share/*/license` in image
+* OpenJDK (`/opt/java/openjdk/` in the image): [GPL 2.0 with Classpath exception](https://openjdk.java.net/legal/gplv2+ce.html)
+  See `/opt/java/openjdk/legal/` in image
+* Alpine GNU/Linux (rest of `/`): [GPL 2](http://www.gnu.org/licenses/gpl-2.0) and [Alpine License Information](https://gitlab.alpinelinux.org/alpine/aports/-/issues/7423)
 
 
 
@@ -83,9 +83,9 @@ To executable multiple `riot` commands within a Docker container:
 
     docker run -it stain/jena sh
 
-Note that this image is based on a minimal
-[Debian GNU/Linux](https://www.debian.org/) installation. You can use
-the `apt` command to install additional tools.
+Note that this image is based on an
+[Alpine Linux](https://www.debian.org/) installation. You can use
+the `apk` command to install additional tools.
 
 
 ## Other command line tools
@@ -167,6 +167,20 @@ sparql --data=<file> --query=<query>
 ```
 
 Note that you will need to use `docker run --volume` to make local files accessible to these commands.
+
+## GitHub Action
+
+@vemonet has made a GitHub Action [vemonet/jena-riot-action](https://github.com/marketplace/actions/validate-rdf-with-jena)
+which can be used to validate or convert RDF files on commits to GitHub:
+
+```yaml
+- uses: vemonet/jena-riot-action@v3.14
+  with:
+    input: my_file.ttl
+    convert: --output=NQUADS
+```
+
+See <https://github.com/vemonet/jena-riot-action> for details.
 
 ## Contact
 
